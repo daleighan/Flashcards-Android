@@ -1,0 +1,5 @@
+flashcards-android/node_modules
+flashcards-android/android
+*.swp
+*.swo
+*.swn
