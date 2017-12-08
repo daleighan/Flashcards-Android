@@ -10,9 +10,9 @@ import {
   Route, 
   Link 
 } from 'react-router-native';
-import Home from './Home';
-import Login from './Login'
-import Signup from './Signup';
+import Home from './loginComponents/Home';
+import Login from './loginComponents/Login'
+import Signup from './loginComponents/Signup';
 
 class App extends Component {
   constructor(props) {
