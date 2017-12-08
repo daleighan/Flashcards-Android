@@ -3,8 +3,11 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  Button
 } from 'react-native';
+import { Link } from 'react-router-native';
 
 class Signup extends Component {
   constructor(props) {
@@ -14,10 +17,26 @@ class Signup extends Component {
   render = () => {
     return (
       <View>
-        <Text>Signup</Text>
+        <Text style={styles.text}>Signup</Text>
+        <Text style={styles.text}>Username</Text><TextInput style={styles.input}/>
+        <Text style={styles.text}>Password</Text><TextInput style={styles.input}/>
+        <Text style={styles.text}>Confirm Password</Text><TextInput style={styles.input}/>
+        <Button onPress={()=> alert('hello')} title="Sign Up" color="red"/>
+        <Text>Already have and account?</Text><Link to="/login"><Text>Click here.</Text></Link>
       </View>
     )
   }
 }
 
 export default Signup;
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 20,
+    color: 'black',
+  },
+  input: {
+    fontSize: 15,
+    color: 'grey'
+  }
+});
