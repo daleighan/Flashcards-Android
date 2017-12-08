@@ -1,29 +1,43 @@
-//import { createStore } from 'redux';
-const { createStore } = require('redux');
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import axios from 'axios';
+import reducers from './reducers/index';
 
-const reducer = function(state, action) {
-  //This will return the new state of the store
-  //It makes changes based on what the action says to do
-  if (action.type === 'INC') {
-    return state + action.payload;
-  }
-  if (action.type === 'DEC') {
-    return state - action.payload;
-  }
-  return state;
+//const initialState = {
+//  name: 'Alex',
+//  age: 27
+//}
+
+const logger1 = (store) => (next) => (action) => {
+  alert('action fired', action);
+  // middleware could also be used to modify the action type
+  next(action);
 }
 
-const store = createStore(reducer, 0);
+const middleware = applyMiddleware(logger);// put in middleware as args
 
+const store = createStore(reducers, {}, middleware);//middleware can be provided as the third argument to this
+
+//anything put in a store.subscribe is called any time an action is dispatched
 store.subscribe(() => {
   console.log('store changed', store.getState());
 });
+//Every dispatch must have a type property. Anything else dispatched can be called anything 
 
-store.dispatch({type: 'INC', payload: 12});
-store.dispatch({type: 'INC', payload: 11});
-store.dispatch({type: 'INC', payload: 2});
-store.dispatch({type: 'INC', payload: 4});
-store.dispatch({type: 'INC', payload: 464});
-store.dispatch({type: 'DEC', payload: 2});
-store.dispatch({type: 'DEC', payload: 50002});
-store.dispatch({type: 'DEC', payload: 1434});
+//store.dispatch({type: 'CHANGE_NAME', payload: 'Alex'});
+
+//To do dispatches async: (Thunk needs to be used as middleware for this to work)
+//store.dispatch((dispatch) => {
+//  dispatch({type: 'FETCH_USERS_START'});
+//  axios.get('someurl.bbb/something')
+//    .then((response) => {
+//      dispatch({ type: 'RECEIVE_USERS', payload: response.data });
+//    })
+//    .catch((err) => {
+//      dispatch({ type: 'FETCH_USERS_ERROR', payload: err });
+//    });
+//});
+
+export default store;
+

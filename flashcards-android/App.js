@@ -13,32 +13,36 @@ import {
 import Home from './loginComponents/Home';
 import Login from './loginComponents/Login'
 import Signup from './loginComponents/Signup';
+import Store from './store';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class App extends Component {
   constructor(props) {
     super(props)
   }
-
   render = () => {
     return (
-      <NativeRouter>
-        <View>
+      <Provider store={store}>
+        <NativeRouter>
           <View>
-            <Link to="/">
-              <Text style={styles.link}>About</Text>
-            </Link>
-            <Link to="/Login">
-              <Text style={styles.link}>Login</Text>
-            </Link>
-            <Link to="/signup">
-              <Text style={styles.link}>Signup</Text>
-            </Link>
+            <View>
+              <Link to="/">
+                <Text style={styles.link}>About</Text>
+              </Link>
+              <Link to="/Login">
+                <Text style={styles.link}>Login</Text>
+              </Link>
+              <Link to="/signup">
+                <Text style={styles.link}>Signup</Text>
+              </Link>
+            </View>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/signup" component={Signup}/>
           </View>
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/signup" component={Signup}/>
-        </View>
-      </NativeRouter>
+        </NativeRouter>
+      </Provider>
     )
   }
 }
