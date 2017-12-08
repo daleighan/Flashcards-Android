@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import authReducers from './authReducers';
-import cardReducers from './cardReducers';
+import auth from './authReducers';
+import cards from './cardReducers';
 
 export default combineReducers({
-  authReducers,
-  cardReducers
+  auth,
+  cards
 });

@@ -4,11 +4,6 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import reducers from './reducers/index';
 
-//const initialState = {
-//  name: 'Alex',
-//  age: 27
-//}
-
 const logger1 = (store) => (next) => (action) => {
   alert('action fired', action);
   // middleware could also be used to modify the action type
@@ -26,18 +21,6 @@ store.subscribe(() => {
 //Every dispatch must have a type property. Anything else dispatched can be called anything 
 
 //store.dispatch({type: 'CHANGE_NAME', payload: 'Alex'});
-
-//To do dispatches async: (Thunk needs to be used as middleware for this to work)
-//store.dispatch((dispatch) => {
-//  dispatch({type: 'FETCH_USERS_START'});
-//  axios.get('someurl.bbb/something')
-//    .then((response) => {
-//      dispatch({ type: 'RECEIVE_USERS', payload: response.data });
-//    })
-//    .catch((err) => {
-//      dispatch({ type: 'FETCH_USERS_ERROR', payload: err });
-//    });
-//});
 
 export default store;
 

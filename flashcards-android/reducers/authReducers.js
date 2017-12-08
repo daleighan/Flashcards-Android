@@ -1,4 +1,8 @@
-const authReducer = (state={}, action) => {
+const initialState = {
+  name: 'not alex'
+}
+
+const authReducer = (state=initialState, action) => {
   switch(action.type) {
     case 'CHANGE_NAME': {
       state = { ...state, name: action.payload }

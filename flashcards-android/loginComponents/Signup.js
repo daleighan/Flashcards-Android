@@ -16,7 +16,6 @@ class Signup extends Component {
     super(props);
   }
   render = () => {
-    console.log(authActions.changeName)
     return (
       <View>
         <Text style={styles.text}>Signup</Text>
@@ -32,9 +31,8 @@ class Signup extends Component {
 }
 
 let Signupcomp = connect((store) => {
-  console.log(store);
   return {
-    name: store.authReducers.name
+    name: store.auth.name
   }
 })(Signup);
 
