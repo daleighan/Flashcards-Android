@@ -8,6 +8,8 @@ import {
   Button
 } from 'react-native';
 import { Link } from 'react-router-native';
+import { connect } from 'react-redux';
+import authActions from '../actions/authActions';
 
 class Login extends Component {
   constructor(props) {
@@ -20,14 +22,20 @@ class Login extends Component {
         <Text style={styles.text}>Login</Text>
         <Text style={styles.text}>Username</Text><TextInput style={styles.input}/>
         <Text style={styles.text}>Password</Text><TextInput style={styles.input}/>
-        <Button onPress={()=> alert('hello')} title="Login" color="red"/>
+        <Button onPress={() => console.log(this.props)} title="Login" color="red"/>
         <Text>Haven't signed up yet?</Text><Link to="/signup"><Text>Click here.</Text></Link>
       </View>
     )
   }
 }
 
-export default Login;
+let Logincomp = connect((store) => {
+  return {
+    name: store.auth.name
+  }
+})(Login);
+
+export default Logincomp;
 
 
 const styles = StyleSheet.create({

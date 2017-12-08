@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import axios from 'axios';
 import reducers from './reducers/index';
 
+// below is an example of how to make redux middleware;
 const logger1 = (store) => (next) => (action) => {
   alert('action fired', action);
   // middleware could also be used to modify the action type
@@ -18,9 +19,6 @@ const store = createStore(reducers, {}, middleware);//middleware can be provided
 store.subscribe(() => {
   console.log('store changed', store.getState());
 });
-//Every dispatch must have a type property. Anything else dispatched can be called anything 
-
-//store.dispatch({type: 'CHANGE_NAME', payload: 'Alex'});
 
 export default store;
 

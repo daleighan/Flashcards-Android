@@ -30,7 +30,7 @@ class App extends Component {
               <Link to="/">
                 <Text style={styles.link}>About</Text>
               </Link>
-              <Link to="/Login">
+              <Link to="/login">
                 <Text style={styles.link}>Login</Text>
               </Link>
               <Link to="/signup">
