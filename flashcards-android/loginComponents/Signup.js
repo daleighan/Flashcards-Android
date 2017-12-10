@@ -17,7 +17,7 @@ class Signup extends Component {
   }
 
   componentWillMount = () => {
-    authActions.changeUsername('');
+    authActions.changeInput('', 'username');
   }
 
   render = () => {
@@ -25,7 +25,7 @@ class Signup extends Component {
       <View>
         <Text style={styles.text}>Signup</Text>
         <Text style={styles.text}>Username</Text>
-        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeUsername(text)}/>
+        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeInput(text, 'username')}/>
         <Text style={styles.text}>Password</Text>
         <TextInput style={styles.input}/>
         <Text style={styles.text}>Confirm Password</Text>

@@ -17,7 +17,7 @@ class Login extends Component {
   }
 
   componentWillMount = () => {
-    authActions.changeUsername('');
+    authActions.changeInput('', 'username');
   }
 
   render = () => {
@@ -25,7 +25,7 @@ class Login extends Component {
       <View>
         <Text style={styles.text}>Login</Text>
         <Text style={styles.text}>Username</Text>
-        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeUsername(text)}/>
+        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeInput(text, 'username')}/>
         <Text style={styles.text}>Password</Text><TextInput style={styles.input}/>
         <Button onPress={() => console.log(this.props)} title="Login" color="red"/>
         <Text>Haven't signed up yet?</Text><Link to="/signup"><Text>Click here.</Text></Link>
