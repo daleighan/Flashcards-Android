@@ -1,8 +1,8 @@
 import store from '../store'
 
 module.exports = {
-  changeName: (newName) => {
-     store.dispatch({ type: 'CHANGE_NAME', payload: newName });
+  changeUsername: (newName) => {
+     store.dispatch({ type: 'UPDATE_USERNAME', payload: newName });
   }
 }
 
