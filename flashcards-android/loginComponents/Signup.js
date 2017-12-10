@@ -19,10 +19,12 @@ class Signup extends Component {
     return (
       <View>
         <Text style={styles.text}>Signup</Text>
-        <Text style={styles.text}>Username</Text><TextInput style={styles.input}/>
-        <Text style={styles.text}>Password</Text><TextInput style={styles.input}/>
-        <Text style={styles.text}>Confirm Password</Text><TextInput style={styles.input}/>
-        <Button onPress={() => authActions.changeName('Alex')} title="Test button" color="red"/>
+        <Text style={styles.text}>Username</Text>
+        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeName(text)}/>
+        <Text style={styles.text}>Password</Text>
+        <TextInput style={styles.input}/>
+        <Text style={styles.text}>Confirm Password</Text>
+        <TextInput style={styles.input}/>
         <Button onPress={() => console.log(this.props)} title="Sign Up" color="red"/>
         <Text>Already have and account?</Text><Link to="/login"><Text>Click here.</Text></Link>
       </View>
@@ -30,7 +32,7 @@ class Signup extends Component {
   }
 }
 
-let Signupcomp = connect((store) => {
+const Signupcomp = connect((store) => {
   return {
     name: store.auth.name
   }

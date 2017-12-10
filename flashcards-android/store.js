@@ -1,12 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
-import axios from 'axios';
 import reducers from './reducers/index';
 
 // below is an example of how to make redux middleware;
 const logger1 = (store) => (next) => (action) => {
-  alert('action fired', action);
+  console.log('action fired', action);
   // middleware could also be used to modify the action type
   next(action);
 }
