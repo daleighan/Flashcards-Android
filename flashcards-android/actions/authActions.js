@@ -48,7 +48,7 @@ module.exports = {
       }
     }
   },
-  signUp: (username, email, password) => {
+  signUp: (username, email, password, history) => {
     email = email.trim();
     password = password.trim();
     username = username.trim();
@@ -67,7 +67,7 @@ module.exports = {
       console.log('call result: ' + result.user);
     });
   },
-  login: (username, password) => {
+  login: (username, password, history) => {
     username = username.trim();
     password = password.trim();
     const authenticationData = {
@@ -96,7 +96,9 @@ module.exports = {
             console.error(error);
           } else {
             console.log('Successfully logged!', AWS.config);
-            store.dispatch({ type: 'TOGGLE_STATUS' })
+            store.dispatch({ type: 'TOGGLE_STATUS' });
+            console.log(history);
+            history.push('/');
           }
         });
       },

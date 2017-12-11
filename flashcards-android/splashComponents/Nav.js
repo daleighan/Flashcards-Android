@@ -21,7 +21,7 @@ class Nav extends Component {
   render = () => {
     return (
       <View>
-        <Text>Splash Page Here</Text>
+        <Text>Nav Bar</Text>
       </View>
     )
   }
@@ -31,6 +31,6 @@ const Navcomp = connect((store) => {
   return {
     name: store.auth.name
   }
-})(Splash);
+})(Nav);
 
 export default Navcomp;
