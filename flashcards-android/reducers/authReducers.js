@@ -10,8 +10,12 @@ const authReducer = (state=initialState, action) => {
       state = { ...state, name: action.payload }
       break;
     }
-    case 'CHANGE_AGE': {
-      state = { ...state, age: action.payload }
+    case 'UPDATE_PASSWORD': {
+      state = { ...state, password: action.payload }
+      break;
+    }
+    case 'UPDATE_CONFIRMATION': {
+      state = { ...state, confirmation: action.payload }
       break;
     }
   }
