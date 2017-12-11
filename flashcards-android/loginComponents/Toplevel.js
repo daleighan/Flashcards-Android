@@ -12,6 +12,7 @@ import {
   Link 
 } from 'react-router-native';
 import { connect } from 'react-redux';
+import Nav from '../splashComponents/Nav';
 
 class Toplevel extends Component {
   constructor(props) {
@@ -19,20 +20,23 @@ class Toplevel extends Component {
   }
 
   render = () => {
-    console.log(this.props);
-    return (
-      <View>
-        <Link to="/">
+    if (this.props.loggedIn === false) {
+      return (
+        <View>
+          <Link to="/">
           <Text style={styles.link}>About</Text>
-        </Link>
-        <Link to="/login">
-          <Text style={styles.link}>Login</Text>
-        </Link>
-        <Link to="/signup">
-          <Text style={styles.link}>Signup</Text>
-        </Link>
-      </View>
-    )
+          </Link>
+          <Link to="/login">
+            <Text style={styles.link}>Login</Text>
+          </Link>
+          <Link to="/signup">
+            <Text style={styles.link}>Signup</Text>
+          </Link>
+        </View>
+      )
+    } else {
+      return (<Nav />)
+    }
   }
 }
 

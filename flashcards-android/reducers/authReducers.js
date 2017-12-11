@@ -23,6 +23,9 @@ const authReducer = (state=initialState, action) => {
       state = { ...state, confirmation: action.payload }
       break;
     }
+    case 'TOGGLE_STATUS': {
+      state = { ...state, loggedIn: !state.loggedIn }
+    }
   }
   return state;
 };
