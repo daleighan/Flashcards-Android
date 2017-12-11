@@ -19,7 +19,6 @@ const userPool = new CognitoUserPool({
   ClientId: authInfo.clientId,
 });
 
-console.log(Config.credentials);
 
 module.exports = {
   changeInput: (newInput, type) => {
@@ -82,31 +81,27 @@ module.exports = {
     }
     const cognitoUser = new CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            console.log('access token + ' + result.getAccessToken().getJwtToken());
-            //POTENTIAL: Region needs to be set if not already set previously elsewhere.
-            AWS.config.region = '<region>';
-            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-                IdentityPoolId : '...', // your identity pool id here
-                Logins : {
-                    // Change the key below according to the specific region your user pool is in.
-                    'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>' : result.getIdToken().getJwtToken()
-                }
-            });
-            //refreshes credentials using AWS.CognitoIdentity.getCredentialsForIdentity()
-            AWS.config.credentials.refresh((error) => {
-                if (error) {
-                     console.error(error);
-                } else {
-                     // Instantiate aws sdk service objects now that the credentials have been updated.
-                     // example: var s3 = new AWS.S3();
-                     console.log('Successfully logged!');
-                }
-            });
-        },
-        onFailure: function(err) {
-            alert(err);
-        },
+      onSuccess: (result) => {
+        console.log('access token + ' + result.getAccessToken().getJwtToken());
+        AWS.config.region = authInfo.region;
+        const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
+        const idpObj = {}
+        idpObj[idpUrl] = result.getIdToken().getJwtToken();
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+          IdentityPoolId: authInfo.identityPoolId,
+            Logins: idpObj
+          });
+        AWS.config.credentials.refresh((error) => {
+          if (error) {
+            console.error(error);
+          } else {
+            console.log('Successfully logged!', AWS.config);
+          }
+        });
+      },
+      onFailure: (err) => {
+        alert(err);
+      },
     });
   }
 }
