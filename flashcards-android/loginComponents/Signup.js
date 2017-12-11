@@ -25,11 +25,23 @@ class Signup extends Component {
       <View>
         <Text style={styles.text}>Signup</Text>
         <Text style={styles.text}>Username</Text>
-        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeInput(text, 'username')}/>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.name} 
+          onChangeText={(text) => authActions.changeInput(text, 'username')}
+        />
         <Text style={styles.text}>Password</Text>
-        <TextInput style={styles.input} value={this.props.password} onChangeText={(text) => authActions.changeInput(text, 'password')}/>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.password} 
+          onChangeText={(text) => authActions.changeInput(text, 'password')}
+        />
         <Text style={styles.text}>Confirm Password</Text>
-        <TextInput style={styles.input} value={this.props.password} onChangeText={(text) => authActions.changeInput(text, 'confirmation')}/>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.confirmation} 
+          onChangeText={(text) => authActions.changeInput(text, 'confirmation')}
+        />
         <Button onPress={() => console.log(this.props)} title="Sign Up" color="red"/>
         <Text>Already have and account?</Text><Link to="/login"><Text>Click here.</Text></Link>
       </View>
@@ -39,7 +51,9 @@ class Signup extends Component {
 
 const Signupcomp = connect((store) => {
   return {
-    name: store.auth.name
+    name: store.auth.name,
+    password: store.auth.password,
+    confirmation: store.auth.confirmation
   }
 })(Signup);
 

@@ -25,9 +25,17 @@ class Login extends Component {
       <View>
         <Text style={styles.text}>Login</Text>
         <Text style={styles.text}>Username</Text>
-        <TextInput style={styles.input} value={this.props.name} onChangeText={(text) => authActions.changeInput(text, 'username')}/>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.name} 
+          onChangeText={(text) => authActions.changeInput(text, 'username')}
+        />
         <Text style={styles.text}>Password</Text>
-        <TextInput style={styles.input} value={this.props.password} onChangeText={(text) => authActions.changeInput(text, 'password')}/>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.password} 
+          onChangeText={(text) => authActions.changeInput(text, 'password')}
+        />
         <Button onPress={() => console.log(this.props)} title="Login" color="red"/>
         <Text>Haven't signed up yet?</Text><Link to="/signup"><Text>Click here.</Text></Link>
       </View>
@@ -43,7 +51,6 @@ const Logincomp = connect((store) => {
 })(Login);
 
 export default Logincomp;
-
 
 const styles = StyleSheet.create({
   text: {
