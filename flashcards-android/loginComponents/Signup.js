@@ -30,6 +30,12 @@ class Signup extends Component {
           value={this.props.name} 
           onChangeText={(text) => authActions.changeInput(text, 'username')}
         />
+        <Text style={styles.text}>E-mail</Text>
+        <TextInput 
+          style={styles.input} 
+          value={this.props.email} 
+          onChangeText={(text) => authActions.changeInput(text, 'email')}
+        />
         <Text style={styles.text}>Password</Text>
         <TextInput 
           style={styles.input} 
@@ -52,6 +58,7 @@ class Signup extends Component {
 const Signupcomp = connect((store) => {
   return {
     name: store.auth.name,
+    email: store.auth.email,
     password: store.auth.password,
     confirmation: store.auth.confirmation
   }

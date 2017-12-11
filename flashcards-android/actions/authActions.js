@@ -7,6 +7,10 @@ module.exports = {
         store.dispatch({ type: 'UPDATE_USERNAME', payload: newInput });
         break;
       }
+      case 'email': {
+        store.dispatch({ type: 'UPDATE_EMAIL', payload: newInput });
+        break;
+      }
       case 'password': {
         store.dispatch({ type: 'UPDATE_PASSWORD', payload: newInput });
         break;
@@ -17,6 +21,7 @@ module.exports = {
       }
       case 'all': {
         store.dispatch({ type: 'UPDATE_USERNAME', payload: newInput });
+        store.dispatch({ type: 'UPDATE_EMAIL', payload: newInput });
         store.dispatch({ type: 'UPDATE_PASSWORD', payload: newInput });
         store.dispatch({ type: 'UPDATE_CONFIRMATION', payload: newInput });
         break;

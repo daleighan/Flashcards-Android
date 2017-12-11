@@ -10,6 +10,10 @@ const authReducer = (state=initialState, action) => {
       state = { ...state, name: action.payload }
       break;
     }
+    case 'UPDATE_EMAIL': { 
+      state = { ...state, email: action.payload }
+      break;
+    }
     case 'UPDATE_PASSWORD': {
       state = { ...state, password: action.payload }
       break;
