@@ -7,6 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "amazon-cognito-identity-js": "^1.28.0",
+    "aws-sdk": "^2.167.0",
     "axios": "^0.17.1",
     "react": "16.0.0",
     "react-native": "0.51.0",

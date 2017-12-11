@@ -1,4 +1,23 @@
-import store from '../store'
+import store from '../store';
+import authInfo from '../cognitoinfo.js';
+import {Config, CognitoIdentityCredentials} from 'aws-sdk';
+import {
+  CognitoUserPool,
+  CognitoUserAttribute
+} from 'amazon-cognito-identity-js';
+
+Config.region = authInfo.region;
+
+Config.credentials = new CognitoIdentityCredentials({
+  IdentityPoolId: authInfo.identityPoolId
+});
+
+const userPool = new CognitoUserPool({
+  UserPoolId: authInfo.userPoolId,
+  ClientId: authInfo.clientId,
+});
+
+console.log(Config.credentials);
 
 module.exports = {
   changeInput: (newInput, type) => {
@@ -27,6 +46,9 @@ module.exports = {
         break;
       }
     }
+  },
+  signUp: (username, email, password) => {
+    console.log('hello');
   }
 }
 
