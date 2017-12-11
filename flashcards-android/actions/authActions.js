@@ -58,9 +58,9 @@ module.exports = {
         Value: email
       })
     ]
-    userPool.signUp(username, password, attributeList, null, (err, result) =>{
+    userPool.signUp(username, password, attributeList, null, (error, result) =>{
       if (err) {
-        console.log(err);
+        console.log(error);
         return;
       }
       console.log('user name is ' + result.user.getUsername());

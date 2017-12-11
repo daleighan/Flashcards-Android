@@ -3,7 +3,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 import { 
   NativeRouter, 
@@ -13,6 +14,7 @@ import {
 import Home from './loginComponents/Home';
 import Login from './loginComponents/Login'
 import Signup from './loginComponents/Signup';
+import Toplevel from './loginComponents/Toplevel';
 import Store from './store';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -21,22 +23,13 @@ class App extends Component {
   constructor(props) {
     super(props)
   }
+
   render = () => {
     return (
       <Provider store={store}>
         <NativeRouter>
           <View>
-            <View>
-              <Link to="/">
-                <Text style={styles.link}>About</Text>
-              </Link>
-              <Link to="/login">
-                <Text style={styles.link}>Login</Text>
-              </Link>
-              <Link to="/signup">
-                <Text style={styles.link}>Signup</Text>
-              </Link>
-            </View>
+            <Toplevel />
             <Route exact path="/" component={Home}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/signup" component={Signup}/>
@@ -48,12 +41,5 @@ class App extends Component {
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  link: {
-    fontSize: 15,
-    color: 'red'
-  }
-});
 
 
