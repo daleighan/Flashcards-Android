@@ -36,7 +36,7 @@ class Login extends Component {
           value={this.props.password} 
           onChangeText={(text) => authActions.changeInput(text, 'password')}
         />
-        <Button onPress={() => console.log(this.props)} title="Login" color="red"/>
+        <Button onPress={() => authActions.login(this.props.name, this.props.password)} title="Login" color="red"/>
         <Text>Haven't signed up yet?</Text><Link to="/signup"><Text>Click here.</Text></Link>
       </View>
     )

@@ -1,9 +1,11 @@
 import store from '../store';
 import authInfo from '../cognitoinfo.js';
-import {Config, CognitoIdentityCredentials} from 'aws-sdk';
+import { Config, CognitoIdentityCredentials } from 'aws-sdk';
 import {
   CognitoUserPool,
-  CognitoUserAttribute
+  CognitoUserAttribute,
+  AuthenticationDetails,
+  CognitoUser
 } from 'amazon-cognito-identity-js';
 
 Config.region = authInfo.region;
@@ -59,12 +61,57 @@ module.exports = {
     ]
     userPool.signUp(username, password, attributeList, null, (err, result) =>{
       if (err) {
-        console.log('error: ', err);
+        console.log(err);
         return;
       }
       console.log('user name is ' + result.user.getUsername());
-      console.log('call result: ' + result);
+      console.log('call result: ' + result.user);
+    });
+  },
+  login: (username, password) => {
+    username = username.trim();
+    password = password.trim();
+    const authenticationData = {
+      Username: username,
+      Password: password
+    }
+    authenticationDetails = new AuthenticationDetails(authenticationData);
+    const userData = {
+      Username: username,
+      Pool: userPool
+    }
+    const cognitoUser = new CognitoUser(userData);
+    cognitoUser.authenticateUser(authenticationDetails, {
+        onSuccess: function (result) {
+            console.log('access token + ' + result.getAccessToken().getJwtToken());
+            //POTENTIAL: Region needs to be set if not already set previously elsewhere.
+            AWS.config.region = '<region>';
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId : '...', // your identity pool id here
+                Logins : {
+                    // Change the key below according to the specific region your user pool is in.
+                    'cognito-idp.<region>.amazonaws.com/<YOUR_USER_POOL_ID>' : result.getIdToken().getJwtToken()
+                }
+            });
+            //refreshes credentials using AWS.CognitoIdentity.getCredentialsForIdentity()
+            AWS.config.credentials.refresh((error) => {
+                if (error) {
+                     console.error(error);
+                } else {
+                     // Instantiate aws sdk service objects now that the credentials have been updated.
+                     // example: var s3 = new AWS.S3();
+                     console.log('Successfully logged!');
+                }
+            });
+        },
+        onFailure: function(err) {
+            alert(err);
+        },
     });
   }
 }
+
+
+
+
 
