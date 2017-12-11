@@ -48,7 +48,23 @@ module.exports = {
     }
   },
   signUp: (username, email, password) => {
-    console.log('hello');
+    email = email.trim();
+    password = password.trim();
+    username = username.trim();
+    const attributeList = [
+      new CognitoUserAttribute({
+        Name: 'email',
+        Value: email
+      })
+    ]
+    userPool.signUp(username, password, attributeList, null, (err, result) =>{
+      if (err) {
+        console.log('error: ', err);
+        return;
+      }
+      console.log('user name is ' + result.user.getUsername());
+      console.log('call result: ' + result);
+    });
   }
 }
 
