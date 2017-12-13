@@ -13,10 +13,15 @@ import {
 } from 'react-router-native';
 import { connect } from 'react-redux';
 import Nav from '../splashComponents/Nav';
+import authActions from '../actions/authActions';
 
 class Toplevel extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    authActions.verifySession();
   }
 
   render = () => {

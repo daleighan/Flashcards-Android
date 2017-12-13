@@ -21,7 +21,7 @@ class Splash extends Component {
   render = () => {
     return (
       <View>
-        <Text>Nav Bar</Text>
+        <Text>Splash Page</Text>
       </View>
     )
   }

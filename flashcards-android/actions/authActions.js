@@ -86,11 +86,11 @@ module.exports = {
         AWS.config.region = authInfo.region;
         const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
         const idpObj = {}
-        idpObj[idpUrl] = result.getIdToken().getJwtToken();
+        idpObj[idpUrl] = result.getidtoken().getjwttoken();
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
           IdentityPoolId: authInfo.identityPoolId,
-            Logins: idpObj
-          });
+          Logins: idpObj
+        });
         AWS.config.credentials.refresh((error) => {
           if (error) {
             console.error(error);
@@ -104,6 +104,41 @@ module.exports = {
       onFailure: (err) => {
         alert(err);
       },
+    });
+  },
+  verifySession: () => {
+    userPool.storage.sync((err, result) => {
+      if (err) { 
+        console.log(err);
+      }
+      else if (result === 'SUCCESS') {
+        let cognitoUser = userPool.getCurrentUser();
+        store.dispatch({ type: 'UPDATE_USERNAME', payload: cognitoUser.username });
+        if (cognitoUser != null) {
+          cognitoUser.getSession((err, session) => {
+            if (err) {
+                alert(err);
+                return;
+            }
+            console.log('session validity: ' + session.isValid());
+            store.dispatch({ type: 'TOGGLE_STATUS' });
+            cognitoUser.getUserAttributes((err, attributes) => {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log(attributes);
+              }
+            });
+            const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
+            const idpObj = {}
+            idpObj[idpUrl] = session.getIdToken().getJwtToken();
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+              IdentityPoolId: authInfo.identityPoolId,
+              Logins: idpObj
+            });
+          });
+        }
+      }
     });
   }
 }
