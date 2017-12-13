@@ -97,8 +97,7 @@ module.exports = {
           } else {
             console.log('Successfully logged!', AWS.config);
             store.dispatch({ type: 'TOGGLE_STATUS' });
-            console.log(history);
-            history.push('/');
+            history.push('/splash');
           }
         });
       },

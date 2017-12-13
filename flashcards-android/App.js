@@ -15,6 +15,7 @@ import Home from './loginComponents/Home';
 import Login from './loginComponents/Login'
 import Signup from './loginComponents/Signup';
 import Toplevel from './loginComponents/Toplevel';
+import Splash from './splashComponents/Splash';
 import Store from './store';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -30,9 +31,10 @@ class App extends Component {
         <NativeRouter>
           <View>
             <Toplevel />
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/signup" component={Signup}/>
+            <Route exact path='/' component={Home}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/signup' component={Signup}/>
+            <Route exact path='/splash' component={Splash}/>
           </View>
         </NativeRouter>
       </Provider>
