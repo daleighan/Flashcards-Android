@@ -16,7 +16,6 @@ const store = createStore(reducers, {}, middleware);//middleware can be provided
 
 //anything put in a store.subscribe is called any time an action is dispatched
 store.subscribe(() => {
-  console.log('store changed', store.getState());
 });
 
 export default store;

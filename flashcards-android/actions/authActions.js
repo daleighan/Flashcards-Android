@@ -86,7 +86,7 @@ module.exports = {
         AWS.config.region = authInfo.region;
         const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
         const idpObj = {}
-        idpObj[idpUrl] = result.getidtoken().getjwttoken();
+        idpObj[idpUrl] = result.getIdToken().getJwtToken();
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
           IdentityPoolId: authInfo.identityPoolId,
           Logins: idpObj
@@ -117,7 +117,7 @@ module.exports = {
         if (cognitoUser != null) {
           cognitoUser.getSession((err, session) => {
             if (err) {
-                alert(err);
+                console.log(err);
                 return;
             }
             console.log('session validity: ' + session.isValid());
@@ -126,7 +126,7 @@ module.exports = {
               if (err) {
                 console.log(err);
               } else {
-                console.log(attributes);
+                //do something with the attributes here if needed
               }
             });
             const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
