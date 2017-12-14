@@ -136,6 +136,7 @@ module.exports = {
               IdentityPoolId: authInfo.identityPoolId,
               Logins: idpObj
             });
+            store.dispatch({ type: 'CHECKING_LOGIN', payload: false });
           });
         }
       }

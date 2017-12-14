@@ -25,7 +25,14 @@ class Toplevel extends Component {
   }
 
   render = () => {
-    if (this.props.loggedIn === false) {
+    if (this.props.checkingLoginStatus === true) {
+      return (
+        <View>
+          <Text>Loading</Text>
+        </View>
+      )
+    }
+    else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
       return (
         <View>
           <Link to="/">
@@ -39,7 +46,7 @@ class Toplevel extends Component {
           </Link>
         </View>
       )
-    } else {
+    } else if (this.props.loggedIn === true) {
       return (<Nav />)
     }
   }
@@ -47,7 +54,8 @@ class Toplevel extends Component {
 
 const Toplevelcomp = connect((store) => {
   return {
-    loggedIn: store.auth.loggedIn
+    loggedIn: store.auth.loggedIn,
+    checkingLoginStatus: store.auth.checkingLoginStatus
   }
 })(Toplevel);
 

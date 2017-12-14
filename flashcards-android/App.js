@@ -19,11 +19,17 @@ import Splash from './splashComponents/Splash';
 import Store from './store';
 import { Provider } from 'react-redux';
 import store from './store';
+import authActions from './actions/authActions';
+import Loading from './loginComponents/Loading';
 
 class App extends Component {
   constructor(props) {
     super(props)
   }
+
+  //componentWillMount() {
+  //  authActions.verifySession();
+  //}
 
   render = () => {
     return (
@@ -32,9 +38,10 @@ class App extends Component {
           <View>
             <Toplevel />
             <Route exact path='/' component={Home}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/signup' component={Signup}/>
-            <Route exact path='/splash' component={Splash}/>
+            <Route path='/login' component={Login}/>
+            <Route path='/signup' component={Signup}/>
+            <Route path='/splash' component={Splash}/>
+            <Route path='/loading' component={Loading}/>
           </View>
         </NativeRouter>
       </Provider>

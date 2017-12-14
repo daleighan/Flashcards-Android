@@ -2,7 +2,8 @@ const initialState = {
   name: '',
   password: '',
   confirmation: '',
-  loggedIn: false
+  loggedIn: false,
+  checkingLoginStatus: true
 }
 
 const authReducer = (state=initialState, action) => {
@@ -25,6 +26,10 @@ const authReducer = (state=initialState, action) => {
     }
     case 'TOGGLE_STATUS': {
       state = { ...state, loggedIn: !state.loggedIn }
+    }
+    case 'CHECKING_LOGIN': {
+      console.log('here')
+      state = { ...state, checkingLoginStatus: false }
     }
   }
   return state;
