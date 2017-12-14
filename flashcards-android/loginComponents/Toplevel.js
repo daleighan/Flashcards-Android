@@ -6,13 +6,10 @@ import {
   View,
   Button
 } from 'react-native';
-import { 
-  NativeRouter, 
-  Route, 
-  Link 
-} from 'react-router-native';
+import { Link } from 'react-router-native';
 import { connect } from 'react-redux';
 import Nav from '../splashComponents/Nav';
+import LoginNav from './LoginNav';
 import Loading from './Loading';
 import authActions from '../actions/authActions';
 
@@ -33,17 +30,7 @@ class Toplevel extends Component {
     }
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
       return (
-        <View>
-          <Link to="/">
-          <Text style={styles.link}>About</Text>
-          </Link>
-          <Link to="/login">
-            <Text style={styles.link}>Login</Text>
-          </Link>
-          <Link to="/signup">
-            <Text style={styles.link}>Signup</Text>
-          </Link>
-        </View>
+        <LoginNav />
       )
     } else if (this.props.loggedIn === true) {
       return (<Nav />)
@@ -59,7 +46,6 @@ const Toplevelcomp = connect((store) => {
 })(Toplevel);
 
 export default Toplevelcomp;
-
 
 const styles = StyleSheet.create({
   link: {
