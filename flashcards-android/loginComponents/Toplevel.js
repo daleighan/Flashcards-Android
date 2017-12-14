@@ -13,6 +13,7 @@ import {
 } from 'react-router-native';
 import { connect } from 'react-redux';
 import Nav from '../splashComponents/Nav';
+import Loading from './Loading';
 import authActions from '../actions/authActions';
 
 class Toplevel extends Component {
@@ -27,9 +28,7 @@ class Toplevel extends Component {
   render = () => {
     if (this.props.checkingLoginStatus === true) {
       return (
-        <View>
-          <Text>Loading</Text>
-        </View>
+        <Loading />
       )
     }
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
