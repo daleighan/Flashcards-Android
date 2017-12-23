@@ -141,6 +141,11 @@ module.exports = {
         }
       }
     });
+  },
+  logout: () => {
+    cognitoUser = userPool.getCurrentUser();
+    cognitoUser.signOut();
+    store.dispatch({ type: 'TOGGLE_STATUS' });
   }
 }
 

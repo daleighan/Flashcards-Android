@@ -13,6 +13,7 @@ import {
 } from 'react-router-native';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
+import authActions from '../actions/authActions';
 
 class Nav extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Nav extends Component {
     return (
       <View>
         <Text>Nav Bar</Text>
+        <Button onPress={() => authActions.logout()} title="Logout" color="red"/>
       </View>
     )
   }

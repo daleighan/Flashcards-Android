@@ -28,7 +28,6 @@ const authReducer = (state=initialState, action) => {
       state = { ...state, loggedIn: !state.loggedIn }
     }
     case 'CHECKING_LOGIN': {
-      console.log('here')
       state = { ...state, checkingLoginStatus: false }
     }
   }
