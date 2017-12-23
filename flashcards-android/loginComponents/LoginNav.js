@@ -7,24 +7,35 @@ import {
   Button
 } from 'react-native';
 import {  Link } from 'react-router-native';
+import Orientation from 'react-native-orientation';
 
-const Loading = (props) =>{
-  return (
-    <View>
-      <Link to="/">
-      <Text style={styles.link}>About</Text>
-      </Link>
-      <Link to="/login">
-        <Text style={styles.link}>Login</Text>
-      </Link>
-      <Link to="/signup">
-        <Text style={styles.link}>Signup</Text>
-      </Link>
-    </View>
-  )
+class LoginNav extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount(){
+    Orientation.lockToPortrait();
+  }
+
+  render = () => {
+    return (
+      <View>
+        <Link to="/">
+        <Text style={styles.link}>About</Text>
+        </Link>
+        <Link to="/login">
+          <Text style={styles.link}>Login</Text>
+        </Link>
+        <Link to="/signup">
+          <Text style={styles.link}>Signup</Text>
+        </Link>
+      </View>
+    )
+  }
 }
 
-export default Loading;
+export default LoginNav;
 
 const styles = StyleSheet.create({
   link: {

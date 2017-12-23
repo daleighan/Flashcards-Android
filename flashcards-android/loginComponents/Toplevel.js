@@ -24,14 +24,10 @@ class Toplevel extends Component {
 
   render = () => {
     if (this.props.checkingLoginStatus === true) {
-      return (
-        <Loading />
-      )
+      return (<Loading />)
     }
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
-      return (
-        <LoginNav />
-      )
+      return (<LoginNav />)
     } else if (this.props.loggedIn === true) {
       return (<Nav />)
     }

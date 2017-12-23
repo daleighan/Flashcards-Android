@@ -12,10 +12,15 @@ import {
   Link 
 } from 'react-router-native';
 import { connect } from 'react-redux';
+import Orientation from 'react-native-orientation';
 
 class Nav extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount(){
+    Orientation.lockToLandscape();
   }
 
   render = () => {
