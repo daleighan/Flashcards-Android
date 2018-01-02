@@ -14,14 +14,16 @@ import {
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import authActions from '../actions/authActions';
+import cardActions from '../actions/cardActions';
 
 class Nav extends Component {
   constructor(props) {
     super(props);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     Orientation.lockToLandscape();
+    cardActions.initialFetch(this.props.name);
   }
 
   render = () => {
