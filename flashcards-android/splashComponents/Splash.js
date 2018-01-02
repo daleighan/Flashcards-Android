@@ -12,6 +12,8 @@ import {
   Link 
 } from 'react-router-native';
 import { connect } from 'react-redux';
+import { Navigation } from 'react-native-navigation';
+registerScreens()
 
 class Splash extends Component {
   constructor(props) {

@@ -1,13 +1,13 @@
 const initialState = {
   allCards: [],
   categories: [],
-  currentDect: [],
+  currentDeck: [],
 }
 
 const cardReducers = (state=initialState, action) => {
   switch(action.type) {
     case 'INITIAL_FETCH': {
-      state = { ...state, allCards: action.payload };
+      state = { ...state, allCards: action.payload.cards, categories: action.payload.categories };
       break;
     }
   }
