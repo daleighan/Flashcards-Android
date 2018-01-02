@@ -6,32 +6,32 @@ const initialState = {
   checkingLoginStatus: true
 }
 
-const authReducer = (state=initialState, action) => {
+const authReducers = (state=initialState, action) => {
   switch(action.type) {
     case 'UPDATE_USERNAME': {
-      state = { ...state, name: action.payload }
+      state = { ...state, name: action.payload };
       break;
     }
     case 'UPDATE_EMAIL': { 
-      state = { ...state, email: action.payload }
+      state = { ...state, email: action.payload };
       break;
     }
     case 'UPDATE_PASSWORD': {
-      state = { ...state, password: action.payload }
+      state = { ...state, password: action.payload };
       break;
     }
     case 'UPDATE_CONFIRMATION': {
-      state = { ...state, confirmation: action.payload }
+      state = { ...state, confirmation: action.payload };
       break;
     }
     case 'TOGGLE_STATUS': {
-      state = { ...state, loggedIn: !state.loggedIn }
+      state = { ...state, loggedIn: !state.loggedIn };
     }
     case 'CHECKING_LOGIN': {
-      state = { ...state, checkingLoginStatus: false }
+      state = { ...state, checkingLoginStatus: false };
     }
   }
   return state;
 };
 
-export default authReducer;
+export default authReducers;
