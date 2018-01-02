@@ -113,31 +113,36 @@ module.exports = {
       }
       else if (result === 'SUCCESS') {
         let cognitoUser = userPool.getCurrentUser();
-        store.dispatch({ type: 'UPDATE_USERNAME', payload: cognitoUser.username });
-        if (cognitoUser != null) {
-          cognitoUser.getSession((err, session) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log('session validity: ' + session.isValid());
-            store.dispatch({ type: 'TOGGLE_STATUS' });
-            cognitoUser.getUserAttributes((err, attributes) => {
+        if (cognitoUser === null) {
+          store.dispatch({ type: 'CHECKING_LOGIN', payload: false });
+        }
+        else {
+          store.dispatch({ type: 'UPDATE_USERNAME', payload: cognitoUser.username });
+          if (cognitoUser != null) {
+            cognitoUser.getSession((err, session) => {
               if (err) {
-                console.log(err);
-              } else {
-                //do something with the attributes here if needed
+                  console.log(err);
+                  return;
               }
+              console.log('session validity: ' + session.isValid());
+              store.dispatch({ type: 'TOGGLE_STATUS' });
+              cognitoUser.getUserAttributes((err, attributes) => {
+                if (err) {
+                  console.log(err);
+                } else {
+                  //do something with the attributes here if needed
+                }
+              });
+              const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
+              const idpObj = {}
+              idpObj[idpUrl] = session.getIdToken().getJwtToken();
+              AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: authInfo.identityPoolId,
+                Logins: idpObj
+              });
+              store.dispatch({ type: 'CHECKING_LOGIN', payload: false });
             });
-            const idpUrl = `cognito-idp.${authInfo.region}.amazonaws.com/${authInfo.userPoolId}`
-            const idpObj = {}
-            idpObj[idpUrl] = session.getIdToken().getJwtToken();
-            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-              IdentityPoolId: authInfo.identityPoolId,
-              Logins: idpObj
-            });
-            store.dispatch({ type: 'CHECKING_LOGIN', payload: false });
-          });
+          }
         }
       }
     });
