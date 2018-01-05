@@ -4,19 +4,21 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
-import { 
-  NativeRouter, 
-  Route, 
-  Link 
-} from 'react-router-native';
 import { connect } from 'react-redux';
 
 class DeckManager extends Component {
   constructor(props) {
     super(props);
   }
+  static navigationOptions = {
+    drawerLabel: 'Deck Manager',
+    drawerIcon: () => (
+      <Image source={require('./images.png')} />
+    )
+  };
 
   render = () => {
     return (

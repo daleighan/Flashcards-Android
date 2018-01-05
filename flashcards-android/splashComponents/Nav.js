@@ -30,6 +30,7 @@ class Nav extends Component {
   render = () => {
     return (
       <View>
+        <DrawerNavigator />
         <Text>Nav Bar</Text>
         <Button onPress={() => authActions.logout()} title="Logout" color="red"/>
       </View>

@@ -4,23 +4,34 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
-import { 
-  NativeRouter, 
-  Route, 
-  Link 
-} from 'react-router-native';
 import { connect } from 'react-redux';
+import Orientation from 'react-native-orientation';
+import authActions from '../actions/authActions';
+import cardActions from '../actions/cardActions';
 
 class Splash extends Component {
   constructor(props) {
     super(props);
   }
+  static navigationOptions = {
+    drawerLabel: 'Splash',
+    drawerIcon: () => (
+      <Image source={require('./images.png')} />
+    )
+  };
+
+  componentWillMount() {
+    Orientation.lockToLandscape();
+    cardActions.initialFetch(this.props.name);
+  }
 
   render = () => {
     return (
       <View>
+        <Button onPress={() => authActions.logout()} title="Logout" color="red"/>
         <Text>Splash Page</Text>
       </View>
     )

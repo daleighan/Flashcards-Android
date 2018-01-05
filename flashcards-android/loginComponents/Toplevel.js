@@ -8,10 +8,11 @@ import {
 } from 'react-native';
 import { Link } from 'react-router-native';
 import { connect } from 'react-redux';
-import Nav from '../splashComponents/Nav';
+import Splash from '../splashComponents/Splash';
 import LoginNav from './LoginNav';
 import Loading from './Loading';
 import authActions from '../actions/authActions';
+import RootDrawer from '../splashComponents/DrawerNavigator';
 
 class Toplevel extends Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Toplevel extends Component {
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
       return (<LoginNav />)
     } else if (this.props.loggedIn === true) {
-      return (<Nav />)
+      return (<RootDrawer />)
     }
   }
 }
