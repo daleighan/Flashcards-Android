@@ -29,7 +29,7 @@ class Toplevel extends Component {
       return (<Loading />)
     }
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
-      return (<Home />)
+      return (<LoginNav />)
     } else if (this.props.loggedIn === true) {
       return (<RootDrawer />)
     }

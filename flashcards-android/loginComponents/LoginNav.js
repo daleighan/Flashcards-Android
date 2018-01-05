@@ -8,7 +8,32 @@ import {
 } from 'react-native';
 import {  Link } from 'react-router-native';
 import Orientation from 'react-native-orientation';
+import { TabNavigator } from "react-navigation";
+import Home from './Home';
+import Login from './Login'
+import Signup from './Signup';
+import Toplevelcomp from './Toplevel';
 
+const TabNav = TabNavigator({
+  Main: {
+    screen: Home,
+    navigationOptions: {
+      title: 'Home'
+    }
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Login'
+    }
+  },
+  Signup: {
+    screen: Signup,
+    navigationOptions: {
+      title: 'Signup'
+    }
+  }
+});
 class LoginNav extends Component {
   constructor(props) {
     super(props);
@@ -20,26 +45,10 @@ class LoginNav extends Component {
 
   render = () => {
     return (
-      <View>
-        <Link to="/">
-        <Text style={styles.link}>About</Text>
-        </Link>
-        <Link to="/login">
-          <Text style={styles.link}>Login</Text>
-        </Link>
-        <Link to="/signup">
-          <Text style={styles.link}>Signup</Text>
-        </Link>
-      </View>
+      <TabNav />
     )
   }
 }
 
 export default LoginNav;
 
-const styles = StyleSheet.create({
-  link: {
-    fontSize: 15,
-    color: 'red'
-  }
-});
