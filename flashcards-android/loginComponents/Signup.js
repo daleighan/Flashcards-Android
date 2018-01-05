@@ -49,7 +49,8 @@ class Signup extends Component {
           onChangeText={(text) => authActions.changeInput(text, 'confirmation')}
         />
         <Button onPress={() => authActions.signUp(this.props.name, this.props.email, this.props.password)} title="Sign Up" color="red"/>
-        <Text>Already have and account?</Text><Link to="/login"><Text>Click here.</Text></Link>
+        <Text>Already have and account?</Text>
+        <Button onPress={() => this.props.navigation.navigate('Login')} title='Click Here' color= 'red'/>
       </View>
     )
   }

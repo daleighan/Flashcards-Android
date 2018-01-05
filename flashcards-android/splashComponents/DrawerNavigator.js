@@ -5,31 +5,27 @@ import {
   Text,
   Image
 } from 'react-native';
-import { DrawerNavigator } from 'react-navigation';
+import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Splash from './Splash';
 import DeckManager from './DeckManager';
 import authActions from '../actions/authActions';
 
-const Drawer = DrawerNavigator({
-  Splash: {
-    screen: Splash,
-    navigationOptions: {
-      drawer: () => ({ label: 'splash' })
+const Drawer = StackNavigator(
+  {
+    Splash: {
+      screen: Splash
     }
-  },
-  DeckManager: {
-    screen: DeckManager,
-    navigationOptions: {
-      drawer: () => ({ label: 'splash' })
-    }
-  },
-});
+  }, {
+    initialRouteName: 'Splash'
+  }
+);
 
 const RootDrawer = () => (
   <View>
-    <Drawer />
-    <Button onPress={() => authActions.logout()} title="Logout" color="blue"/>
+    <Drawer ref={nav => { this.navigator = nav; }} />
+    <Button onPress={() => authActions.logout()} title='Logout' color='blue'/>
+    <Button onPress={() => console.log(this.navigator)} title='Open Drawer' color="red"/>
   </View>
 );
 

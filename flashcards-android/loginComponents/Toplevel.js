@@ -13,6 +13,7 @@ import LoginNav from './LoginNav';
 import Loading from './Loading';
 import authActions from '../actions/authActions';
 import RootDrawer from '../splashComponents/DrawerNavigator';
+import Home from './Home';
 
 class Toplevel extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Toplevel extends Component {
       return (<Loading />)
     }
     else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
-      return (<LoginNav />)
+      return (<Home />)
     } else if (this.props.loggedIn === true) {
       return (<RootDrawer />)
     }
@@ -44,9 +45,3 @@ const Toplevelcomp = connect((store) => {
 
 export default Toplevelcomp;
 
-const styles = StyleSheet.create({
-  link: {
-    fontSize: 15,
-    color: 'red'
-  }
-});

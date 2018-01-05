@@ -22,33 +22,60 @@ import store from './store';
 import authActions from './actions/authActions';
 import Loading from './loginComponents/Loading';
 import RootDrawer from './splashComponents/DrawerNavigator';
+import { TabNavigator } from "react-navigation";
+//class App extends Component {
+//  constructor(props) {
+//    super(props)
+//  }
+//
+//  //componentWillMount() {
+//  //  authActions.verifySession();
+//  //}
+//
+//  render = () => {
+//    return (
+//      <Provider store={store}>
+//        <NativeRouter>
+//          <View>
+//            <Route exact path='/' component={Toplevel}/>
+//            <Route path='/login' component={Login}/>
+//            <Route path='/signup' component={Signup}/>
+//            <Route path='/splash' component={Splash}/>
+//            <Route path='/loading' component={Loading}/>
+//            <Route path='/drawer' component={RootDrawer} />
+//          </View>
+//        </NativeRouter>
+//      </Provider>
+//    )
+//  }
+//}
 
-class App extends Component {
-  constructor(props) {
-    super(props)
+const TabNav = TabNavigator({
+  Main: {
+    screen: Toplevel,
+    navigationOptions: {
+      title: 'Home'
+    }
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Login'
+    }
+  },
+  Signup: {
+    screen: Signup,
+    navigationOptions: {
+      title: 'Signup'
+    }
   }
+});
 
-  //componentWillMount() {
-  //  authActions.verifySession();
-  //}
-
-  render = () => {
-    return (
-      <Provider store={store}>
-        <NativeRouter>
-          <View>
-            <Route exact path='/' component={Toplevel}/>
-            <Route path='/login' component={Login}/>
-            <Route path='/signup' component={Signup}/>
-            <Route path='/splash' component={Splash}/>
-            <Route path='/loading' component={Loading}/>
-            <Route path='/drawer' component={RootDrawer} />
-          </View>
-        </NativeRouter>
-      </Provider>
-    )
-  }
-}
+const App = () => ( 
+  <Provider store={store}>
+    <TabNav />
+  </Provider>
+);
 
 export default App;
 

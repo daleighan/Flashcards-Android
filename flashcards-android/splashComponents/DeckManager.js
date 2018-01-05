@@ -14,10 +14,7 @@ class DeckManager extends Component {
     super(props);
   }
   static navigationOptions = {
-    drawerLabel: 'Deck Manager',
-    drawerIcon: () => (
-      <Image source={require('./images.png')} />
-    )
+    title: 'Deck Manager',
   };
 
   render = () => {

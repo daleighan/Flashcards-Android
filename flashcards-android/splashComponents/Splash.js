@@ -17,10 +17,7 @@ class Splash extends Component {
     super(props);
   }
   static navigationOptions = {
-    drawerLabel: 'Splash',
-    drawerIcon: () => (
-      <Image source={require('./images.png')} />
-    )
+    title: 'Splash',
   };
 
   componentWillMount() {
