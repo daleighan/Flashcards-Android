@@ -15,8 +15,7 @@ import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import authActions from '../actions/authActions';
 import cardActions from '../actions/cardActions';
-import Splash from './Splash';
-import DeckManager from './DeckManager';
+import DrawerNavigator from './DrawerNavigator';
 
 class Nav extends Component {
   constructor(props) {
