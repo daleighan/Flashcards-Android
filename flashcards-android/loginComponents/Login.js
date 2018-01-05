@@ -36,7 +36,7 @@ class Login extends Component {
           value={this.props.password} 
           onChangeText={(text) => authActions.changeInput(text, 'password')}
         />
-        <Button onPress={() => authActions.login(this.props.name, this.props.password, this.props.navigation)} title='Login' color='red'/>
+        <Button onPress={() => authActions.login(this.props.name, this.props.password)} title='Login' color='red'/>
         <Text>Haven't signed up yet?</Text>
         <Button onPress={() => this.props.navigation.navigate('Signup')} title='Click Here' color= 'red'/>
       </View>

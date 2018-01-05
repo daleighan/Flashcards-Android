@@ -17,7 +17,13 @@ class Splash extends Component {
     super(props);
   }
   static navigationOptions = {
-    title: 'Splash',
+    drawerLabel: 'Splash Page',
+    drawerIcon: ({ tintColor }) => (
+      <Image
+        source={require('./images.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
   };
 
   componentWillMount() {
@@ -28,6 +34,7 @@ class Splash extends Component {
   render = () => {
     return (
       <View>
+        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
         <Text>Splash Page</Text>
       </View>
     )
@@ -41,3 +48,10 @@ const Splashcomp = connect((store) => {
 })(Splash);
 
 export default Splashcomp;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});

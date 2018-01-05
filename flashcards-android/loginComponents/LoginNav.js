@@ -34,6 +34,7 @@ const TabNav = TabNavigator({
     }
   }
 });
+
 class LoginNav extends Component {
   constructor(props) {
     super(props);

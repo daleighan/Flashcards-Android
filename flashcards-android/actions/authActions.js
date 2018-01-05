@@ -48,7 +48,7 @@ module.exports = {
       }
     }
   },
-  signUp: (username, email, password, history) => {
+  signUp: (username, email, password) => {
     email = email.trim();
     password = password.trim();
     username = username.trim();
@@ -59,7 +59,7 @@ module.exports = {
       })
     ]
     userPool.signUp(username, password, attributeList, null, (error, result) =>{
-      if (err) {
+      if (error) {
         console.log(error);
         return;
       }
@@ -67,7 +67,7 @@ module.exports = {
       console.log('call result: ' + result.user);
     });
   },
-  login: (username, password, history) => {
+  login: (username, password) => {
     username = username.trim();
     password = password.trim();
     const authenticationData = {
@@ -97,7 +97,6 @@ module.exports = {
           } else {
             console.log('Successfully logged!', AWS.config);
             store.dispatch({ type: 'TOGGLE_STATUS' });
-            history.push('/drawer');
           }
         });
       },

@@ -8,18 +8,27 @@ import {
   Image
 } from 'react-native';
 import { connect } from 'react-redux';
+import authActions from '../actions/authActions';
 
 class DeckManager extends Component {
   constructor(props) {
     super(props);
   }
   static navigationOptions = {
-    title: 'Deck Manager',
+    drawerLabel: 'Deck Manager',
+    drawerIcon: ({ tintColor }) => (
+      <Image
+        source={require('./images.png')}
+        style={[styles.icon, {tintColor: tintColor}]}
+      />
+    ),
   };
 
   render = () => {
     return (
       <View>
+        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
+        <Button onPress={() => authActions.logout()} title='Logout' color="red"/>
         <Text>Deck Manager</Text>
       </View>
     )
@@ -34,3 +43,10 @@ const DeckMangercomp = connect((store) => {
 })(DeckManager);
 
 export default DeckMangercomp;
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 24,
+    height: 24,
+  },
+});
