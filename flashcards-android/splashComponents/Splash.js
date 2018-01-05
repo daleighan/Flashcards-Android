@@ -31,7 +31,6 @@ class Splash extends Component {
   render = () => {
     return (
       <View>
-        <Button onPress={() => authActions.logout()} title="Logout" color="red"/>
         <Text>Splash Page</Text>
       </View>
     )

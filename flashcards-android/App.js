@@ -21,6 +21,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import authActions from './actions/authActions';
 import Loading from './loginComponents/Loading';
+import RootDrawer from './splashComponents/DrawerNavigator';
 
 class App extends Component {
   constructor(props) {
@@ -36,12 +37,12 @@ class App extends Component {
       <Provider store={store}>
         <NativeRouter>
           <View>
-            <Toplevel />
-            <Route exact path='/' component={Home}/>
+            <Route exact path='/' component={Toplevel}/>
             <Route path='/login' component={Login}/>
             <Route path='/signup' component={Signup}/>
             <Route path='/splash' component={Splash}/>
             <Route path='/loading' component={Loading}/>
+            <Route path='/drawer' component={RootDrawer} />
           </View>
         </NativeRouter>
       </Provider>

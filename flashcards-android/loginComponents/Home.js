@@ -3,8 +3,10 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+import authActions from '../actions/authActions';
 
 class Home extends Component {
   constructor(props) {
