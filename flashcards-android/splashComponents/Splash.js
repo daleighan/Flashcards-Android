@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Button,
-  Image
+  Image,
+  Picker
 } from 'react-native';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
@@ -32,9 +33,18 @@ class Splash extends Component {
   }
 
   render = () => {
+    console.log(this.props, 'splash props');
     return (
       <View>
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
+        <Picker
+          selectedValue={this.props.currentCategory}
+          onValueChange={(category) => cardActions.updateCategory(category)}>
+          {this.props.categories.map((category, i) => { 
+              return <Picker.Item key={i} label={category} value={category} />
+            })
+          }
+        </Picker>
         <Text>Splash Page</Text>
       </View>
     )
@@ -43,7 +53,9 @@ class Splash extends Component {
 
 const Splashcomp = connect((store) => {
   return {
-    name: store.auth.name
+    name: store.auth.name,
+    categories: store.cards.categories,
+    currentCategory: store.cards.currentCategory
   }
 })(Splash);
 

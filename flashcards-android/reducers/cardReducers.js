@@ -1,6 +1,7 @@
 const initialState = {
   allCards: [],
   categories: [],
+  currentCategory: "",
   currentDeck: [],
 }
 

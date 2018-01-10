@@ -13,10 +13,10 @@ import DeckManager from './DeckManager';
 import authActions from '../actions/authActions';
 
 const RootDrawer = DrawerNavigator({
-  Home: {
+  Splash: {
     screen: Splash,
   },
-  Notifications: {
+  Management: {
     screen: DeckManager,
   },
 });

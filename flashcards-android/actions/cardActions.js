@@ -14,5 +14,8 @@ module.exports = {
       }
       store.dispatch({ type: 'INITIAL_FETCH', payload, });
     });
+  },
+  updateCategory: (newCategory) => {
+    console.log(newCategory);
   }
 }
