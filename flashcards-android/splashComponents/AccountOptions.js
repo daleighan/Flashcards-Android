@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
+import { 
+  Button, 
+  View, 
   Text,
-  View,
-  Button,
-  Image
+  Image,
+  StyleSheet
 } from 'react-native';
 import { connect } from 'react-redux';
 import authActions from '../actions/authActions';
 
-class DeckManager extends Component {
+class AccountOptions extends Component {
   constructor(props) {
     super(props);
   }
   static navigationOptions = {
-    drawerLabel: 'Deck Manager',
+    drawerLabel: 'Account Options',
     drawerIcon: ({ tintColor }) => (
       <Image
         source={require('./images.png')}
@@ -23,25 +22,23 @@ class DeckManager extends Component {
       />
     ),
   };
-
   render = () => {
     return (
       <View>
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
-        <Text>Deck Manager</Text>
+        <Button onPress={() => authActions.logout()} title='Logout' color="red"/>
       </View>
     )
   }
 }
-
-
-const DeckMangercomp = connect((store) => {
+const AccountOptionscomp = connect((store) => {
   return {
-    allCards: store.cards.allCards
+    name: store.auth.name
   }
-})(DeckManager);
+})(AccountOptions);
 
-export default DeckMangercomp;
+export default AccountOptionscomp;
+
 
 const styles = StyleSheet.create({
   icon: {

@@ -6,10 +6,11 @@ import {
   Image,
   StyleSheet
 } from 'react-native';
-import { DrawerNavigator, TabNavigator, NavigationActions } from 'react-navigation';
+import { DrawerNavigator, NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Splash from './Splash';
 import DeckManager from './DeckManager';
+import AccountOptions from './AccountOptions';
 import authActions from '../actions/authActions';
 
 const RootDrawer = DrawerNavigator({
@@ -19,6 +20,10 @@ const RootDrawer = DrawerNavigator({
   Management: {
     screen: DeckManager,
   },
+  AccountOptions: {
+    screen: AccountOptions,
+  },
 });
+
 
 export default RootDrawer;
