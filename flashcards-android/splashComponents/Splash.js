@@ -11,7 +11,8 @@ import {
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import authActions from '../actions/authActions';
-import cardActions from '../actions/cardActions';
+import cardActions from '../actions/cardActions'
+import Carousel from 'react-native-carousel-view';
 
 class Splash extends Component {
   constructor(props) {
@@ -32,23 +33,52 @@ class Splash extends Component {
     cardActions.initialFetch(this.props.name);
   }
 
+  renderCard({ item, index }) {
+    return (
+      <View>
+        <Text>Item Here</Text>
+      </View>
+    )
+  }
+
   render = () => {
     return (
       <View>
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
         <Picker
+          mode='dropdown'
           selectedValue={this.props.currentCategory}
           onValueChange={(category) => cardActions.updateCategory(category)}>
-          <Picker.Item label='none' value={null} />
+          <Picker.Item label='Select A Category' value={null}/>
           {this.props.categories.map((category, i) => { 
-              return <Picker.Item key={i} label={category} value={category} />
-            })
-          }
+              return <Picker.Item key={i} label={category} value={category}/>
+          })}
         </Picker>
         {this.props.currentCategory === null ? (
           <View><Text>Please Select a Category</Text></View>
         ) : (
-          <View><Text>Category Selected</Text></View>
+          <View style={styles.container}>
+            <Carousel
+              animate={false}
+              width={375}
+              height={300}
+              delay={2000}
+              indicatorAtBottom={false}
+              indicatorSize={20}
+              indicatorText="✽"
+              indicatorColor="red"
+              >
+              <View style={styles.contentContainer}>
+                <Text>Page 1</Text>
+              </View>
+              <View style={styles.contentContainer}>
+                <Text>Page 2</Text>
+              </View>
+              <View style={styles.contentContainer}>
+                <Text>Page 3</Text>
+              </View>
+            </Carousel>
+           </View>
         )}
       </View>
     )
@@ -59,7 +89,8 @@ const Splashcomp = connect((store) => {
   return {
     name: store.auth.name,
     categories: store.cards.categories,
-    currentCategory: store.cards.currentCategory
+    currentCategory: store.cards.currentCategory,
+    currentDeck: store.cards.currentDeck
   }
 })(Splash);
 
@@ -70,4 +101,16 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
+  container: {
+    flex: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  contentContainer: {
+    borderWidth: 2,
+    borderColor: '#CCC',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

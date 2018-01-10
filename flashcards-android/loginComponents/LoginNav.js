@@ -6,7 +6,6 @@ import {
   View,
   Button
 } from 'react-native';
-import {  Link } from 'react-router-native';
 import Orientation from 'react-native-orientation';
 import { TabNavigator } from "react-navigation";
 import Home from './Home';

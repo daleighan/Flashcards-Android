@@ -6,7 +6,6 @@ import {
   View,
   Button
 } from 'react-native';
-import { Link } from 'react-router-native';
 import { connect } from 'react-redux';
 import Splash from '../splashComponents/Splash';
 import LoginNav from './LoginNav';

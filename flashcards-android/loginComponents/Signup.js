@@ -7,7 +7,6 @@ import {
   TextInput,
   Button
 } from 'react-native';
-import { Link } from 'react-router-native';
 import { connect } from 'react-redux';
 import authActions from '../actions/authActions';
 
