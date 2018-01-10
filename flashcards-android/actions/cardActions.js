@@ -16,6 +16,6 @@ module.exports = {
     });
   },
   updateCategory: (newCategory) => {
-    console.log(newCategory);
+    store.dispatch({ type: 'UPDATE_CATEGORY', payload: newCategory });
   }
 }

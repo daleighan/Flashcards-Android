@@ -33,19 +33,23 @@ class Splash extends Component {
   }
 
   render = () => {
-    console.log(this.props, 'splash props');
     return (
       <View>
         <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
         <Picker
           selectedValue={this.props.currentCategory}
           onValueChange={(category) => cardActions.updateCategory(category)}>
+          <Picker.Item label='none' value={null} />
           {this.props.categories.map((category, i) => { 
               return <Picker.Item key={i} label={category} value={category} />
             })
           }
         </Picker>
-        <Text>Splash Page</Text>
+        {this.props.currentCategory === null ? (
+          <View><Text>Please Select a Category</Text></View>
+        ) : (
+          <View><Text>Category Selected</Text></View>
+        )}
       </View>
     )
   }
