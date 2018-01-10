@@ -38,7 +38,7 @@ class Toplevel extends Component {
 const Toplevelcomp = connect((store) => {
   return {
     loggedIn: store.auth.loggedIn,
-    checkingLoginStatus: store.auth.checkingLoginStatus
+    checkingLoginStatus: store.auth.checkingLoginStatus,
   }
 })(Toplevel);
 

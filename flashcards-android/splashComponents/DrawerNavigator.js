@@ -11,6 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Splash from './Splash';
 import DeckManager from './DeckManager';
 import AccountOptions from './AccountOptions';
+import AddCards from './AddCards';
 import authActions from '../actions/authActions';
 
 const RootDrawer = DrawerNavigator({
@@ -19,6 +20,9 @@ const RootDrawer = DrawerNavigator({
   },
   Management: {
     screen: DeckManager,
+  },
+  AddCards: {
+    screen: AddCards
   },
   AccountOptions: {
     screen: AccountOptions,

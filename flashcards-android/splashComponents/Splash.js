@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
-import authActions from '../actions/authActions';
 import cardActions from '../actions/cardActions'
 import Carousel from 'react-native-carousel-view';
 
@@ -90,7 +89,7 @@ const Splashcomp = connect((store) => {
     name: store.auth.name,
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
-    currentDeck: store.cards.currentDeck
+    currentDeck: store.cards.currentDeck,
   }
 })(Splash);
 
