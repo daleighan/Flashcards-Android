@@ -59,7 +59,7 @@ class Splash extends Component {
           <View style={styles.container}>
             <Carousel
               animate={false}
-              width={375}
+              width={600}
               height={300}
               delay={2000}
               indicatorAtBottom={false}
@@ -67,15 +67,9 @@ class Splash extends Component {
               indicatorText="✽"
               indicatorColor="red"
               >
-              <View style={styles.contentContainer}>
-                <Text>Page 1</Text>
-              </View>
-              <View style={styles.contentContainer}>
-                <Text>Page 2</Text>
-              </View>
-              <View style={styles.contentContainer}>
-                <Text>Page 3</Text>
-              </View>
+              {this.props.currentDeck.map((card, i) => {
+                return <View key={i} style={styles.contentContainer}><Text>{card.front}</Text></View>
+              })}
             </Carousel>
            </View>
         )}
