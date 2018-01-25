@@ -28,28 +28,37 @@ class Splash extends Component {
   };
 
   componentWillMount() {
+    let {
+      fetched,
+      name,
+      currentCategory,
+      categories,
+      allCards,
+      navigation,
+    } = this.props;
     Orientation.lockToLandscape();
-    if (!this.props.fetched) {
-      cardActions.initialFetch(this.props.name);
+    if (!fetched) {
+      cardActions.initialFetch(name);
     }
-    if (this.props.currentCategory === 'adding') {
-      cardActions.updateCategory(this.props.categories[0]);
+    if (currentCategory === 'adding') {
+      cardActions.updateCategory(categories[0]);
     }
-    if (this.props.allCards.length === 0 && this.props.fetched === true) {
-      this.props.navigation.navigate('AddCards');
+    if (allCards.length === 0 && fetched === true) {
+      navigation.navigate('AddCards');
       alert('To add your first category, simply create the first card in it');
     }
   }
 
   componentDidUpdate() {
-    if (this.props.allCards.length === 0 && this.props.fetched === true) {
-      this.props.navigation.navigate('AddCards');
+    let {allCards, fetched, navigation} = this.props;
+    if (allCards.length === 0 && fetched === true) {
+      navigation.navigate('AddCards');
       alert('To add your first category, simply create the first card in it');
     }
   }
 
   render = () => {
-    let {allCards} = this.props;
+    let {allCards, loading, categories, currentCategory} = this.props;
     return (
       <View>
         <Button
@@ -58,13 +67,13 @@ class Splash extends Component {
         />
         <Picker
           mode="dropdown"
-          selectedValue={this.props.currentCategory}
+          selectedValue={currentCategory}
           onValueChange={category => cardActions.updateCategory(category)}>
-          {this.props.categories.map((category, i) => {
+          {categories.map((category, i) => {
             return <Picker.Item key={i} label={category} value={category} />;
           })}
         </Picker>
-        {this.props.currentCategory === null ? (
+        {currentCategory === null || loading === true ? (
           <View>
             <Text>Loading</Text>
           </View>
@@ -84,6 +93,7 @@ const Splashcomp = connect(store => {
     currentCategory: store.cards.currentCategory,
     loadingCategory: store.cards.loadingCategory,
     allCards: store.cards.allCards,
+    loading: store.cards.loading,
   };
 })(Splash);
 

@@ -1,5 +1,6 @@
 const initialState = {
   fetched: false,
+  loading: false,
   allCards: [],
   categories: [],
   currentCategory: null,
@@ -60,6 +61,10 @@ const cardReducers = (state = initialState, action) => {
     }
     case 'UNFETCH': {
       state = {...state, fetched: false};
+      break;
+    }
+    case 'TOGGLE_LOADING': {
+      state = {...state, loading: !state.loading};
       break;
     }
   }

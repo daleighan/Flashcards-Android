@@ -19,10 +19,12 @@ module.exports = {
       });
   },
   updateCategory: newCategory => {
-    store.dispatch({type: 'UPDATE_CATEGORY', payload: null});
+    store.dispatch({type: 'TOGGLE_LOADING'});
+    store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
     setTimeout(() => {
       store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
-    }, 50);
+      setTimeout(() => store.dispatch({type: 'TOGGLE_LOADING'}), 25);
+    }, 25);
   },
   updateNewCategory: text => {
     store.dispatch({type: 'UPDATE_NEW_CATEGORY', payload: text});
