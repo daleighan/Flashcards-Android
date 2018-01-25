@@ -49,7 +49,6 @@ class AddCards extends Component {
           mode="dropdown"
           selectedValue={selectedCategory}
           onValueChange={category => cardActions.updateCategory(category)}>
-          <Picker.Item label="Select A Category" value={null} />
           {this.props.categories.map((category, i) => {
             return <Picker.Item key={i} label={category} value={category} />;
           })}

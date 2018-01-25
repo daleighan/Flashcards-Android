@@ -1,14 +1,6 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image
-} from 'react-native';
-import { connect } from 'react-redux';
-import authActions from '../actions/authActions';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button, Image} from 'react-native';
+import {connect} from 'react-redux';
 
 class DeckManager extends Component {
   constructor(props) {
@@ -16,7 +8,7 @@ class DeckManager extends Component {
   }
   static navigationOptions = {
     drawerLabel: 'Deck Manager',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: ({tintColor}) => (
       <Image
         source={require('./images.png')}
         style={[styles.icon, {tintColor: tintColor}]}
@@ -27,18 +19,20 @@ class DeckManager extends Component {
   render = () => {
     return (
       <View>
-        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
+        <Button
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          title="Menu"
+        />
         <Text>Deck Manager</Text>
       </View>
-    )
-  }
+    );
+  };
 }
 
-
-const DeckMangercomp = connect((store) => {
+const DeckMangercomp = connect(store => {
   return {
-    allCards: store.cards.allCards
-  }
+    allCards: store.cards.allCards,
+  };
 })(DeckManager);
 
 export default DeckMangercomp;

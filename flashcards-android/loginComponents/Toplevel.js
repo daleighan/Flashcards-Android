@@ -1,12 +1,6 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
+import {connect} from 'react-redux';
 import Splash from '../splashComponents/Splash';
 import LoginNav from './LoginNav';
 import Loading from './Loading';
@@ -25,22 +19,23 @@ class Toplevel extends Component {
 
   render = () => {
     if (this.props.checkingLoginStatus === true) {
-      return (<Loading />)
-    }
-    else if (this.props.loggedIn === false && this.props.checkingLoginStatus == false) {
-      return (<LoginNav />)
+      return <Loading />;
+    } else if (
+      this.props.loggedIn === false &&
+      this.props.checkingLoginStatus == false
+    ) {
+      return <LoginNav />;
     } else if (this.props.loggedIn === true) {
-      return (<RootDrawer />)
+      return <RootDrawer />;
     }
-  }
+  };
 }
 
-const Toplevelcomp = connect((store) => {
+const Toplevelcomp = connect(store => {
   return {
     loggedIn: store.auth.loggedIn,
     checkingLoginStatus: store.auth.checkingLoginStatus,
-  }
+  };
 })(Toplevel);
 
 export default Toplevelcomp;
-

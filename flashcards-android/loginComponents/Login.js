@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
   View,
   TextInput,
-  Button
+  Button,
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import authActions from '../actions/authActions';
 
 class Login extends Component {
@@ -17,37 +17,47 @@ class Login extends Component {
 
   componentWillMount = () => {
     authActions.changeInput('', 'all');
-  }
+  };
 
   render = () => {
     return (
       <View>
         <Text style={styles.text}>Login</Text>
         <Text style={styles.text}>Username</Text>
-        <TextInput 
-          style={styles.input} 
-          value={this.props.name} 
-          onChangeText={(text) => authActions.changeInput(text, 'username')}
+        <TextInput
+          style={styles.input}
+          value={this.props.name}
+          onChangeText={text => authActions.changeInput(text, 'username')}
         />
         <Text style={styles.text}>Password</Text>
-        <TextInput 
-          style={styles.input} 
-          value={this.props.password} 
-          onChangeText={(text) => authActions.changeInput(text, 'password')}
+        <TextInput
+          style={styles.input}
+          value={this.props.password}
+          onChangeText={text => authActions.changeInput(text, 'password')}
         />
-        <Button onPress={() => authActions.login(this.props.name, this.props.password)} title='Login' color='red'/>
+        <Button
+          onPress={() =>
+            authActions.login(this.props.name, this.props.password)
+          }
+          title="Login"
+          color="red"
+        />
         <Text>Haven't signed up yet?</Text>
-        <Button onPress={() => this.props.navigation.navigate('Signup')} title='Click Here' color= 'red'/>
+        <Button
+          onPress={() => this.props.navigation.navigate('Signup')}
+          title="Click Here"
+          color="red"
+        />
       </View>
-    )
-  }
+    );
+  };
 }
 
-const Logincomp = connect((store) => {
+const Logincomp = connect(store => {
   return {
     name: store.auth.name,
     password: store.auth.password,
-  }
+  };
 })(Login);
 
 export default Logincomp;
@@ -59,6 +69,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 15,
-    color: 'grey'
+    color: 'grey',
   },
 });

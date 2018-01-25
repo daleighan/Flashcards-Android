@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import Orientation from 'react-native-orientation';
-import { TabNavigator } from "react-navigation";
+import {TabNavigator} from 'react-navigation';
 import Home from './Home';
-import Login from './Login'
+import Login from './Login';
 import Signup from './Signup';
 import Toplevelcomp from './Toplevel';
 
@@ -17,21 +11,21 @@ const TabNav = TabNavigator({
   Main: {
     screen: Home,
     navigationOptions: {
-      title: 'Home'
-    }
+      title: 'Home',
+    },
   },
   Login: {
     screen: Login,
     navigationOptions: {
-      title: 'Login'
-    }
+      title: 'Login',
+    },
   },
   Signup: {
     screen: Signup,
     navigationOptions: {
-      title: 'Signup'
-    }
-  }
+      title: 'Signup',
+    },
+  },
 });
 
 class LoginNav extends Component {
@@ -39,16 +33,13 @@ class LoginNav extends Component {
     super(props);
   }
 
-  componentWillMount(){
+  componentWillMount() {
     Orientation.lockToPortrait();
   }
 
   render = () => {
-    return (
-      <TabNav />
-    )
-  }
+    return <TabNav />;
+  };
 }
 
 export default LoginNav;
-

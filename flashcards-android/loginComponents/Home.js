@@ -1,11 +1,5 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 import authActions from '../actions/authActions';
 
 class Home extends Component {
@@ -18,8 +12,8 @@ class Home extends Component {
       <View>
         <Text>Home</Text>
       </View>
-    )
-  }
+    );
+  };
 }
 
 export default Home;
