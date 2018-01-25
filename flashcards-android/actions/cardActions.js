@@ -21,4 +21,17 @@ module.exports = {
   updateNewCategory: (text) => {
     store.dispatch({ type: 'UPDATE_NEW', payload: text });
   },
+  updateNewInput: (text, type) => {
+    console.log(text);
+    switch(type) {
+      case 'front': {
+        store.dispatch({ type: 'UPDATE_NEW_FRONT', payload: text });
+        break;
+      }
+      case 'back': {
+        store.dispatch({ type: 'UPDATE_NEW_BACK', payload: text });
+        break;
+      }
+    }
+  },
 }

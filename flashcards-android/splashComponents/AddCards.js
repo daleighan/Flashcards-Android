@@ -27,7 +27,7 @@ class AddCards extends Component {
   }
 
   render = () => {
-    let { name, currentCategory, newCategory, newCard, categories } = this.props;
+    let { name, currentCategory, newCategory, newFront, newBack, categories } = this.props;
     let selectedCategory = currentCategory;
     if (!categories.includes(selectedCategory)) {
       selectedCategory = 'adding';
@@ -57,12 +57,14 @@ class AddCards extends Component {
         <Text>Front</Text>
         <TextInput
           style={styles.input}
-          value={newCard.front}
+          value={newFront}
+          onChangeText={(text) => cardActions.updateNewInput(text, 'front')}
         />
         <Text>Back</Text>
         <TextInput
           style={styles.input}
-          value={newCard.back}
+          value={newBack}
+          onChangeText={(text) => cardActions.updateNewInput(text, 'back')}
         />
       </View>
     )
@@ -73,8 +75,9 @@ const AddCardscomp = connect((store) => {
     name: store.auth.name,
     currentCategory: store.cards.currentCategory,
     newCategory: store.cards.newCategory,
+    newFront: store.cards.newFront,
+    newBack: store.cards.newBack,
     categories: store.cards.categories,
-    newCard: store.cards.newCard,
   }
 })(AddCards);
 

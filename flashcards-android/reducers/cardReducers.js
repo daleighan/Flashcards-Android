@@ -3,10 +3,8 @@ const initialState = {
   categories: [],
   currentCategory: null,
   currentDeck: [],
-  newCard: {
-    front: '',
-    back: '',
-  },
+  newFront: '',
+  newBack: '',
   newCategory: '',
 }
 
@@ -22,6 +20,14 @@ const cardReducers = (state=initialState, action) => {
     }
     case 'UPDATE_NEW': {
       state = { ...state, newCategory: action.payload }
+      break;
+    }
+    case 'UPDATE_NEW_FRONT': {
+      state = { ...state, newFront: action.payload };
+      break;
+    }
+    case 'UPDATE_NEW_BACK': {
+      state = { ...state, newBack: action.payload };
       break;
     }
   }
