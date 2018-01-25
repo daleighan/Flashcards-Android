@@ -46,6 +46,10 @@ const cardReducers = (state = initialState, action) => {
       state = {...state, categories: [...state.categories, action.payload]};
       break;
     }
+    case 'INSERT_CARD': {
+      state = {...state, allCards: [...state.allCards, action.payload]};
+      break;
+    }
   }
   return state;
 };

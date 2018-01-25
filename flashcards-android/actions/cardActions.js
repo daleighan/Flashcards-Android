@@ -48,10 +48,8 @@ module.exports = {
     front,
     back,
   ) => {
-    console.log('current cat', currentCategory);
     if (!categories.includes(newCategory) && newCategory.length > 0) {
       store.dispatch({type: 'NEW_CATEGORY', payload: newCategory});
-      store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
       currentCategory = newCategory;
     }
     axios
@@ -65,6 +63,18 @@ module.exports = {
           archived: false,
         },
       )
-      .then(response => console.log(response));
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+    store.dispatch({
+      type: 'INSERT_CARD',
+      payload: {
+        username,
+        front,
+        back,
+        category: currentCategory,
+        archived: false,
+      },
+    });
+    store.dispatch({type: 'UPDATE_CATEGORY', payload: currentCategory});
   },
 };
