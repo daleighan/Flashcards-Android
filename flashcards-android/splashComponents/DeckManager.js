@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image, Picker} from 'react-native';
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  Picker,
+} from 'react-native';
 import {connect} from 'react-redux';
 import cardActions from '../actions/cardActions';
 
@@ -17,10 +25,18 @@ class DeckManager extends Component {
     ),
   };
 
+  componentWillMount() {
+    let {categories, currentCategory} = this.props;
+    if (!categories.includes(currentCategory)) {
+      this.props.navigation.navigate('AddCards');
+      alert('To add a new category, simply enter a new category here and add the first card to create it');
+    }
+  }
   componentWillReceiveProps() {
     let {categories, currentCategory} = this.props;
     if (!categories.includes(currentCategory)) {
       this.props.navigation.navigate('AddCards');
+      alert('To add a new category, simply enter a new category here and add the first card to create it');
     }
   }
 
@@ -48,7 +64,7 @@ class DeckManager extends Component {
         </Picker>
         {!categories.includes(currentCategory) ? (
           <View>
-            <Text>new category</Text>
+            <Text>Loading</Text>
           </View>
         ) : null}
       </View>

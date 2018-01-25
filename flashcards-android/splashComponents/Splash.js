@@ -56,8 +56,7 @@ class Splash extends Component {
         {this.props.currentCategory === null ? (
           <View>
             <Text>
-              To create your first deck, simply add a new card in the first
-              category you would like to create
+              Loading
             </Text>
           </View>
         ) : (
