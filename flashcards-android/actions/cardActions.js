@@ -22,7 +22,7 @@ module.exports = {
     store.dispatch({type: 'UPDATE_CATEGORY', payload: null});
     setTimeout(() => {
       store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
-    }, 200);
+    }, 50);
   },
   updateNewCategory: text => {
     store.dispatch({type: 'UPDATE_NEW_CATEGORY', payload: text});

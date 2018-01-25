@@ -1,4 +1,5 @@
 const initialState = {
+  loadingCategory: false,
   fetched: false,
   allCards: [],
   categories: [],
@@ -12,11 +13,20 @@ const initialState = {
 const cardReducers = (state = initialState, action) => {
   switch (action.type) {
     case 'INITIAL_FETCH': {
+      let initialCategory = null;
+      if (action.payload.categories.length > 0) {
+        initialCategory = action.payload.categories[0];
+      }
+      console.log(initialCategory)
       state = {
         ...state,
         fetched: true,
         allCards: action.payload.cards,
         categories: action.payload.categories,
+        currentCategory: initialCategory,
+        currentDeck: action.payload.cards.filter(
+          card => card.category === initialCategory,
+        ),
       };
       break;
     }

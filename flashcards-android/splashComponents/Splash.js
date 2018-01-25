@@ -35,6 +35,7 @@ class Splash extends Component {
   }
 
   render = () => {
+    let {loading} = this.props;
     return (
       <View>
         <Button
@@ -45,14 +46,13 @@ class Splash extends Component {
           mode="dropdown"
           selectedValue={this.props.currentCategory}
           onValueChange={category => cardActions.updateCategory(category)}>
-          <Picker.Item label="Select A Category" value={null} />
           {this.props.categories.map((category, i) => {
             return <Picker.Item key={i} label={category} value={category} />;
           })}
         </Picker>
         {this.props.currentCategory === null ? (
           <View>
-            <Text>Please Select a Category</Text>
+            <Text>To create your first deck, simply add a new card in the first category you would like to create</Text>
           </View>
         ) : (
           <CarouselHolder />
@@ -68,6 +68,7 @@ const Splashcomp = connect(store => {
     fetched: store.cards.fetched,
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
+    loadingCategory: store.cards.loadingCategory,
   };
 })(Splash);
 

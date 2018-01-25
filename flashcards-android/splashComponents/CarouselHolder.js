@@ -37,9 +37,7 @@ class CarouselHolder extends Component {
           indicatorText="✽"
           indicatorColor="red">
           {this.props.currentDeck.map((card, i) => {
-            return (
-              <Card key={i} card={card} />
-            );
+            return <Card key={i} card={card} style={styles.contentContainer}/>;
           })}
         </Carousel>
       </View>

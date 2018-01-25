@@ -10,10 +10,16 @@ class Card extends Component {
   }
 
   render = () => {
-    let {card} = this.props;
+    let {card, style} = this.props;
+    let {flipped} = this.state;
     return (
-      <View style={styles.contentContainer}>
-        <Text>{card.front}</Text>
+      <View style={style}>
+        {!flipped ? (
+          <Text>{card.front}</Text>
+        ) : (
+          <Text>{card.back}</Text>
+        )}
+        <Button onPress={() => this.setState({flipped: !flipped})} title='flip' />
       </View>
     );
   };
@@ -21,13 +27,3 @@ class Card extends Component {
 
 export default Card;
 
-const styles = StyleSheet.create({
-  contentContainer: {
-    paddingTop: 50,
-    borderWidth: 2,
-    borderColor: '#CCC',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
