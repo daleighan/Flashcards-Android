@@ -35,10 +35,21 @@ class Splash extends Component {
     if (this.props.currentCategory === 'adding') {
       cardActions.updateCategory(this.props.categories[0]);
     }
+    if (this.props.allCards.length === 0 && this.props.fetched === true) {
+      this.props.navigation.navigate('AddCards');
+      alert('To add your first category, simply create the first card in it');
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.allCards.length === 0 && this.props.fetched === true) {
+      this.props.navigation.navigate('AddCards');
+      alert('To add your first category, simply create the first card in it');
+    }
   }
 
   render = () => {
-    let {loading} = this.props;
+    let {allCards} = this.props;
     return (
       <View>
         <Button
@@ -55,9 +66,7 @@ class Splash extends Component {
         </Picker>
         {this.props.currentCategory === null ? (
           <View>
-            <Text>
-              Loading
-            </Text>
+            <Text>Loading</Text>
           </View>
         ) : (
           <CarouselHolder />
@@ -74,6 +83,7 @@ const Splashcomp = connect(store => {
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
     loadingCategory: store.cards.loadingCategory,
+    allCards: store.cards.allCards,
   };
 })(Splash);
 

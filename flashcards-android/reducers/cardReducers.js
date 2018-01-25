@@ -1,5 +1,4 @@
 const initialState = {
-  loadingCategory: false,
   fetched: false,
   allCards: [],
   categories: [],

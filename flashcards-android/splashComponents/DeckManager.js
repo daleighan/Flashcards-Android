@@ -29,14 +29,18 @@ class DeckManager extends Component {
     let {categories, currentCategory} = this.props;
     if (!categories.includes(currentCategory)) {
       this.props.navigation.navigate('AddCards');
-      alert('To add a new category, simply enter a new category here and add the first card to create it');
+      alert(
+        'To add a new category, simply enter a new category here and add the first card to create it',
+      );
     }
   }
   componentWillReceiveProps() {
     let {categories, currentCategory} = this.props;
     if (!categories.includes(currentCategory)) {
       this.props.navigation.navigate('AddCards');
-      alert('To add a new category, simply enter a new category here and add the first card to create it');
+      alert(
+        'To add a new category, simply enter a new category here and add the first card to create it',
+      );
     }
   }
 
