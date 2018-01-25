@@ -14,10 +14,14 @@ import Carousel from 'react-native-carousel-view';
 class CarouselHolder extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      changed: false,
+    }
   }
 
   componentWillReceiveProps() {
-    this.forceUpdate();
+    console.log('here are props being received', this.props);
+    setTimeout(()=>this.setState({ changed: !this.state.changed }), 100);
   }
 
   render = () => {
@@ -33,10 +37,10 @@ class CarouselHolder extends Component {
           indicatorText="✽"
           indicatorColor="red"
           >
-         {this.props.currentDeck.map((card, i) => {
-           return <View key={i} style={styles.contentContainer}><Text>{card.front}</Text></View>
-         })}
-       </Carousel>
+          {this.props.currentDeck.map((card, i) => {
+            return <View key={i} style={styles.contentContainer}><Text>{card.front}</Text></View>
+          })}
+        </Carousel>
       </View>
     )
   }
