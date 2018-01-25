@@ -32,6 +32,9 @@ class Splash extends Component {
     if (!this.props.fetched) {
       cardActions.initialFetch(this.props.name);
     }
+    if (this.props.currentCategory === 'adding') {
+      cardActions.updateCategory(this.props.categories[0]);
+    }
   }
 
   render = () => {

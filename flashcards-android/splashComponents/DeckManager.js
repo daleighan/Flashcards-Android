@@ -17,6 +17,13 @@ class DeckManager extends Component {
     ),
   };
 
+  componentWillReceiveProps() {
+    let {categories, currentCategory} = this.props;
+    if (!categories.includes(currentCategory)) {
+      this.props.navigation.navigate('AddCards');
+    }
+  }
+
   render = () => {
     let {name, currentCategory, categories} = this.props;
     let selectedCategory = currentCategory;
