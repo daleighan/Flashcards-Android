@@ -32,14 +32,6 @@ class Splash extends Component {
     cardActions.initialFetch(this.props.name);
   }
 
-  renderCard({ item, index }) {
-    return (
-      <View>
-        <Text>Item Here</Text>
-      </View>
-    )
-  }
-
   render = () => {
     return (
       <View>
@@ -68,7 +60,6 @@ const Splashcomp = connect((store) => {
     name: store.auth.name,
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
-    currentDeck: store.cards.currentDeck,
   }
 })(Splash);
 

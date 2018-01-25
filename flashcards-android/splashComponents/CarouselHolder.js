@@ -20,7 +20,6 @@ class CarouselHolder extends Component {
   }
 
   componentWillReceiveProps() {
-    console.log('here are props being received', this.props);
     setTimeout(()=>this.setState({ changed: !this.state.changed }), 100);
   }
 

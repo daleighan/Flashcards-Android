@@ -3,6 +3,11 @@ const initialState = {
   categories: [],
   currentCategory: null,
   currentDeck: [],
+  newCard: {
+    front: '',
+    back: '',
+  },
+  newCategory: '',
 }
 
 const cardReducers = (state=initialState, action) => {
@@ -13,7 +18,11 @@ const cardReducers = (state=initialState, action) => {
     }
     case 'UPDATE_CATEGORY': {
       state = { ...state, currentCategory: action.payload, currentDeck: state.allCards.filter(card => card.category === action.payload) };
-      break
+      break;
+    }
+    case 'UPDATE_NEW': {
+      state = { ...state, newCategory: action.payload }
+      break;
     }
   }
   return state;

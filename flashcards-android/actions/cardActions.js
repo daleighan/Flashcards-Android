@@ -17,5 +17,8 @@ module.exports = {
   },
   updateCategory: (newCategory) => {
     store.dispatch({ type: 'UPDATE_CATEGORY', payload: newCategory });
-  }
+  },
+  updateNewCategory: (text) => {
+    store.dispatch({ type: 'UPDATE_NEW', payload: text });
+  },
 }

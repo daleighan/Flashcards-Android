@@ -60,5 +60,5 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 15,
     color: 'grey'
-  }
+  },
 });
