@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { 
-  Button, 
-  View, 
+import React, {Component} from 'react';
+import {
+  Button,
+  View,
   Text,
   Image,
   StyleSheet,
   Picker,
-  TextInput
+  TextInput,
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import cardActions from '../actions/cardActions';
 
 class AddCards extends Component {
@@ -18,39 +18,50 @@ class AddCards extends Component {
 
   static navigationOptions = {
     drawerLabel: 'Add Cards',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: ({tintColor}) => (
       <Image
         source={require('./images.png')}
         style={[styles.icon, {tintColor: tintColor}]}
       />
     ),
-  }
+  };
 
   render = () => {
-    let { name, currentCategory, newCategory, newFront, newBack, categories } = this.props;
+    let {
+      name,
+      currentCategory,
+      newCategory,
+      newFront,
+      newBack,
+      categories,
+    } = this.props;
     let selectedCategory = currentCategory;
     if (!categories.includes(selectedCategory)) {
       selectedCategory = 'adding';
     }
     return (
       <View>
-        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
+        <Button
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          title="Menu"
+        />
         <Picker
-          mode='dropdown'
+          mode="dropdown"
           selectedValue={selectedCategory}
-          onValueChange={(category) => cardActions.updateCategory(category)}>
-          {this.props.categories.map((category, i) => { 
-              return <Picker.Item key={i} label={category} value={category}/>
+          onValueChange={category => cardActions.updateCategory(category)}>
+          <Picker.Item label="Select A Category" value={null} />
+          {this.props.categories.map((category, i) => {
+            return <Picker.Item key={i} label={category} value={category} />;
           })}
-          <Picker.Item label='Add A Category' value='adding'/>
+          <Picker.Item label="Add A Category" value="adding" />
         </Picker>
         {!categories.includes(currentCategory) ? (
           <View>
             <Text>Enter a new category</Text>
-            <TextInput  
+            <TextInput
               style={styles.input}
-              value={newCategory} 
-              onChangeText={(text) => cardActions.updateNewCategory(text)}
+              value={newCategory}
+              onChangeText={text => cardActions.updateNewCategory(text)}
             />
           </View>
         ) : null}
@@ -58,19 +69,33 @@ class AddCards extends Component {
         <TextInput
           style={styles.input}
           value={newFront}
-          onChangeText={(text) => cardActions.updateNewInput(text, 'front')}
+          onChangeText={text => cardActions.updateNewInput(text, 'front')}
         />
         <Text>Back</Text>
         <TextInput
           style={styles.input}
           value={newBack}
-          onChangeText={(text) => cardActions.updateNewInput(text, 'back')}
+          onChangeText={text => cardActions.updateNewInput(text, 'back')}
+        />
+        <Button
+          onPress={() =>
+            cardActions.addCard(
+              currentCategory,
+              newCategory,
+              categories,
+              name,
+              newFront,
+              newBack,
+            )
+          }
+          title="Add Card"
         />
       </View>
-    )
-  }
+    );
+  };
 }
-const AddCardscomp = connect((store) => {
+
+const AddCardscomp = connect(store => {
   return {
     name: store.auth.name,
     currentCategory: store.cards.currentCategory,
@@ -78,11 +103,10 @@ const AddCardscomp = connect((store) => {
     newFront: store.cards.newFront,
     newBack: store.cards.newBack,
     categories: store.cards.categories,
-  }
+  };
 })(AddCards);
 
 export default AddCardscomp;
-
 
 const styles = StyleSheet.create({
   icon: {
@@ -91,6 +115,6 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 15,
-    color: 'grey'
+    color: 'grey',
   },
 });

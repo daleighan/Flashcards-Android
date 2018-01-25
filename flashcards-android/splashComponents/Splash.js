@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
@@ -6,11 +6,11 @@ import {
   View,
   Button,
   Image,
-  Picker
+  Picker,
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Orientation from 'react-native-orientation';
-import cardActions from '../actions/cardActions'
+import cardActions from '../actions/cardActions';
 import CarouselHolder from './CarouselHolder';
 
 class Splash extends Component {
@@ -19,7 +19,7 @@ class Splash extends Component {
   }
   static navigationOptions = {
     drawerLabel: 'Splash Page',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: ({tintColor}) => (
       <Image
         source={require('./images.png')}
         style={[styles.icon, {tintColor: tintColor}]}
@@ -29,38 +29,46 @@ class Splash extends Component {
 
   componentWillMount() {
     Orientation.lockToLandscape();
-    cardActions.initialFetch(this.props.name);
+    if (!this.props.fetched) {
+      cardActions.initialFetch(this.props.name);
+    }
   }
 
   render = () => {
     return (
       <View>
-        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
+        <Button
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          title="Menu"
+        />
         <Picker
-          mode='dropdown'
+          mode="dropdown"
           selectedValue={this.props.currentCategory}
-          onValueChange={(category) => cardActions.updateCategory(category)}>
-          <Picker.Item label='Select A Category' value={null}/>
-          {this.props.categories.map((category, i) => { 
-              return <Picker.Item key={i} label={category} value={category}/>
+          onValueChange={category => cardActions.updateCategory(category)}>
+          <Picker.Item label="Select A Category" value={null} />
+          {this.props.categories.map((category, i) => {
+            return <Picker.Item key={i} label={category} value={category} />;
           })}
         </Picker>
         {this.props.currentCategory === null ? (
-          <View><Text>Please Select a Category</Text></View>
+          <View>
+            <Text>Please Select a Category</Text>
+          </View>
         ) : (
           <CarouselHolder />
         )}
       </View>
-    )
-  }
+    );
+  };
 }
 
-const Splashcomp = connect((store) => {
+const Splashcomp = connect(store => {
   return {
     name: store.auth.name,
+    fetched: store.cards.fetched,
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
-  }
+  };
 })(Splash);
 
 export default Splashcomp;

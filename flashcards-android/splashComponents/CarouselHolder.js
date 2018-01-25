@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   Platform,
   StyleSheet,
@@ -6,9 +6,9 @@ import {
   View,
   Button,
   Image,
-  Picker
+  Picker,
 } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Carousel from 'react-native-carousel-view';
 
 class CarouselHolder extends Component {
@@ -16,11 +16,11 @@ class CarouselHolder extends Component {
     super(props);
     this.state = {
       changed: false,
-    }
+    };
   }
 
   componentWillReceiveProps() {
-    setTimeout(()=>this.setState({ changed: !this.state.changed }), 100);
+    setTimeout(() => this.setState({changed: !this.state.changed}), 100);
   }
 
   render = () => {
@@ -34,21 +34,24 @@ class CarouselHolder extends Component {
           indicatorAtBottom={false}
           indicatorSize={20}
           indicatorText="✽"
-          indicatorColor="red"
-          >
+          indicatorColor="red">
           {this.props.currentDeck.map((card, i) => {
-            return <View key={i} style={styles.contentContainer}><Text>{card.front}</Text></View>
+            return (
+              <View key={i} style={styles.contentContainer}>
+                <Text>{card.front}</Text>
+              </View>
+            );
           })}
         </Carousel>
       </View>
-    )
-  }
+    );
+  };
 }
 
-const CarouselHolderComp = connect((store) => {
+const CarouselHolderComp = connect(store => {
   return {
     currentDeck: store.cards.currentDeck,
-  }
+  };
 })(CarouselHolder);
 
 export default CarouselHolderComp;
@@ -65,5 +68,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
