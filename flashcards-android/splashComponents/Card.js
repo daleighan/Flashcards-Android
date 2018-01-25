@@ -14,16 +14,14 @@ class Card extends Component {
     let {flipped} = this.state;
     return (
       <View style={style}>
-        {!flipped ? (
-          <Text>{card.front}</Text>
-        ) : (
-          <Text>{card.back}</Text>
-        )}
-        <Button onPress={() => this.setState({flipped: !flipped})} title='flip' />
+        {!flipped ? <Text>{card.front}</Text> : <Text>{card.back}</Text>}
+        <Button
+          onPress={() => this.setState({flipped: !flipped})}
+          title="flip"
+        />
       </View>
     );
   };
 }
 
 export default Card;
-

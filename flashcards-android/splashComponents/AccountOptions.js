@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-import { 
-  Button, 
-  View, 
-  Text,
-  Image,
-  StyleSheet
-} from 'react-native';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {Button, View, Text, Image, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
 import authActions from '../actions/authActions';
+import cardActions from '../actions/cardActions';
 
 class AccountOptions extends Component {
   constructor(props) {
@@ -15,7 +10,7 @@ class AccountOptions extends Component {
   }
   static navigationOptions = {
     drawerLabel: 'Account Options',
-    drawerIcon: ({ tintColor }) => (
+    drawerIcon: ({tintColor}) => (
       <Image
         source={require('./images.png')}
         style={[styles.icon, {tintColor: tintColor}]}
@@ -25,20 +20,29 @@ class AccountOptions extends Component {
   render = () => {
     return (
       <View>
-        <Button onPress={() => this.props.navigation.navigate('DrawerOpen')} title="Menu"/>
-        <Button onPress={() => authActions.logout()} title='Logout' color="red"/>
+        <Button
+          onPress={() => this.props.navigation.navigate('DrawerOpen')}
+          title="Menu"
+        />
+        <Button
+          onPress={() => {
+            authActions.logout();
+            cardActions.unfetch();
+          }}
+          title="Logout"
+          color="red"
+        />
       </View>
-    )
-  }
+    );
+  };
 }
-const AccountOptionscomp = connect((store) => {
+const AccountOptionscomp = connect(store => {
   return {
-    name: store.auth.name
-  }
+    name: store.auth.name,
+  };
 })(AccountOptions);
 
 export default AccountOptionscomp;
-
 
 const styles = StyleSheet.create({
   icon: {

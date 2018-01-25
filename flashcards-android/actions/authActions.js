@@ -147,8 +147,9 @@ module.exports = {
     });
   },
   logout: () => {
-    cognitoUser = userPool.getCurrentUser();
+    let cognitoUser = userPool.getCurrentUser();
     cognitoUser.signOut();
+    Config.credentials.clearCachedId();
     store.dispatch({ type: 'TOGGLE_STATUS' });
   }
 }

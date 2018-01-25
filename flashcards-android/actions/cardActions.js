@@ -80,4 +80,7 @@ module.exports = {
     store.dispatch({type: 'UPDATE_NEW_FRONT', payload: ''});
     store.dispatch({type: 'UPDATE_NEW_BACK', payload: ''});
   },
+  unfetch: () => {
+    store.dispatch({type: 'UNFETCH'});
+  },
 };

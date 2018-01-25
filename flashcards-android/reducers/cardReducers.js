@@ -17,7 +17,6 @@ const cardReducers = (state = initialState, action) => {
       if (action.payload.categories.length > 0) {
         initialCategory = action.payload.categories[0];
       }
-      console.log(initialCategory)
       state = {
         ...state,
         fetched: true,
@@ -58,6 +57,10 @@ const cardReducers = (state = initialState, action) => {
     }
     case 'INSERT_CARD': {
       state = {...state, allCards: [...state.allCards, action.payload]};
+      break;
+    }
+    case 'UNFETCH': {
+      state = {...state, fetched: false};
       break;
     }
   }
