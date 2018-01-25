@@ -30,7 +30,7 @@ const cardReducers = (state = initialState, action) => {
       };
       break;
     }
-    case 'UPDATE_NEW': {
+    case 'UPDATE_NEW_CATEGORY': {
       state = {...state, newCategory: action.payload};
       break;
     }

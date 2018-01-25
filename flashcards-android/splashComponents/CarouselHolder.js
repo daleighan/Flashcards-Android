@@ -8,6 +8,7 @@ import {
   Image,
   Picker,
 } from 'react-native';
+import Card from './Card';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-carousel-view';
 
@@ -37,9 +38,7 @@ class CarouselHolder extends Component {
           indicatorColor="red">
           {this.props.currentDeck.map((card, i) => {
             return (
-              <View key={i} style={styles.contentContainer}>
-                <Text>{card.front}</Text>
-              </View>
+              <Card key={i} card={card} />
             );
           })}
         </Carousel>
