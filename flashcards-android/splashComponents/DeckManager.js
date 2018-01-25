@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, Image, Picker} from 'react-native';
 import {connect} from 'react-redux';
+import cardActions from '../actions/cardActions';
 
 class DeckManager extends Component {
   constructor(props) {
@@ -17,6 +18,11 @@ class DeckManager extends Component {
   };
 
   render = () => {
+    let {name, currentCategory, categories} = this.props;
+    let selectedCategory = currentCategory;
+    if (!categories.includes(selectedCategory)) {
+      selectedCategory = 'adding';
+    }
     return (
       <View>
         <Button
@@ -24,6 +30,20 @@ class DeckManager extends Component {
           title="Menu"
         />
         <Text>Deck Manager</Text>
+        <Picker
+          mode="dropdown"
+          selectedValue={selectedCategory}
+          onValueChange={category => cardActions.updateCategory(category)}>
+          {this.props.categories.map((category, i) => {
+            return <Picker.Item key={i} label={category} value={category} />;
+          })}
+          <Picker.Item label="Add A Category" value="adding" />
+        </Picker>
+        {!categories.includes(currentCategory) ? (
+          <View>
+            <Text>new category</Text>
+          </View>
+        ) : null}
       </View>
     );
   };
@@ -32,6 +52,9 @@ class DeckManager extends Component {
 const DeckMangercomp = connect(store => {
   return {
     allCards: store.cards.allCards,
+    name: store.auth.name,
+    currentCategory: store.cards.currentCategory,
+    categories: store.cards.categories,
   };
 })(DeckManager);
 
