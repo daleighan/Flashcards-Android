@@ -49,7 +49,7 @@ module.exports = {
     back,
   ) => {
     console.log('current cat', currentCategory);
-    if (!categories.includes(newCategory)) {
+    if (!categories.includes(newCategory) && newCategory.length > 0) {
       store.dispatch({type: 'NEW_CATEGORY', payload: newCategory});
       store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
       currentCategory = newCategory;
