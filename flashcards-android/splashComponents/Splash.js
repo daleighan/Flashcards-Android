@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import cardActions from '../actions/cardActions'
-import Carousel from 'react-native-carousel-view';
+import CarouselHolder from './CarouselHolder';
 
 class Splash extends Component {
   constructor(props) {
@@ -56,22 +56,7 @@ class Splash extends Component {
         {this.props.currentCategory === null ? (
           <View><Text>Please Select a Category</Text></View>
         ) : (
-          <View style={styles.container}>
-            <Carousel
-              animate={false}
-              width={600}
-              height={300}
-              delay={2000}
-              indicatorAtBottom={false}
-              indicatorSize={20}
-              indicatorText="✽"
-              indicatorColor="red"
-              >
-              {this.props.currentDeck.map((card, i) => {
-                return <View key={i} style={styles.contentContainer}><Text>{card.front}</Text></View>
-              })}
-            </Carousel>
-           </View>
+          <CarouselHolder />
         )}
       </View>
     )
@@ -94,16 +79,4 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
   },
-  container: {
-    flex: 0.5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  contentContainer: {
-    borderWidth: 2,
-    borderColor: '#CCC',
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
 });
