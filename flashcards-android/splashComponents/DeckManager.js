@@ -26,11 +26,14 @@ class DeckManager extends Component {
   };
 
   componentWillMount() {
+    console.log('component mounted');
     let {categories, currentCategory} = this.props;
-    if (currentCategory === 'adding') {
+    if (currentCategory === 'adding' && categories.length > 0) {
+      cardActions.updateCategory(categories[0]);
+    } else if (categories.length === 0) {
       this.props.navigation.navigate('AddCards');
       alert(
-        'To add a new category, simply enter a new category here and add the first card to create it',
+        'To add your first category, simply enter a new category here and add the first card to create it',
       );
     }
   }
