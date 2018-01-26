@@ -27,16 +27,16 @@ class DeckManager extends Component {
 
   componentWillMount() {
     let {categories, currentCategory} = this.props;
-    if (!categories.includes(currentCategory)) {
+    if (currentCategory === 'adding') {
       this.props.navigation.navigate('AddCards');
       alert(
         'To add a new category, simply enter a new category here and add the first card to create it',
       );
     }
   }
-  componentWillReceiveProps() {
+  componentDidUpdate() {
     let {categories, currentCategory} = this.props;
-    if (!categories.includes(currentCategory)) {
+    if (currentCategory === 'adding') {
       this.props.navigation.navigate('AddCards');
       alert(
         'To add a new category, simply enter a new category here and add the first card to create it',
