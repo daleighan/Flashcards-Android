@@ -9,6 +9,7 @@ import {
   Picker,
 } from 'react-native';
 import {connect} from 'react-redux';
+import DeckListItem from './DeckListItem';
 import cardActions from '../actions/cardActions';
 
 class DeckManager extends Component {
@@ -73,9 +74,7 @@ class DeckManager extends Component {
             <Text>Loading</Text>
           </View>
         ) : (
-          <View>
-            {currentDeck.map((card, i) => <View></View>)}
-          </View>
+          <View>{currentDeck.map((card, i) => <DeckListItem key={i} card={card} />)}</View>
         )}
       </View>
     );
