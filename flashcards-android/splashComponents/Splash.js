@@ -91,6 +91,7 @@ const Splashcomp = connect(store => {
     fetched: store.cards.fetched,
     categories: store.cards.categories,
     currentCategory: store.cards.currentCategory,
+    currentDeck: store.cards.currentDeck,
     loadingCategory: store.cards.loadingCategory,
     allCards: store.cards.allCards,
     loading: store.cards.loading,

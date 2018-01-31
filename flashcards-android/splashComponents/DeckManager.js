@@ -26,7 +26,6 @@ class DeckManager extends Component {
   };
 
   componentWillMount() {
-    console.log('component mounted');
     let {categories, currentCategory} = this.props;
     if (currentCategory === 'adding' && categories.length > 0) {
       cardActions.updateCategory(categories[0]);
@@ -48,7 +47,7 @@ class DeckManager extends Component {
   }
 
   render = () => {
-    let {name, currentCategory, categories} = this.props;
+    let {name, currentCategory, currentDeck, categories} = this.props;
     let selectedCategory = currentCategory;
     if (!categories.includes(selectedCategory)) {
       selectedCategory = 'adding';
@@ -73,7 +72,11 @@ class DeckManager extends Component {
           <View>
             <Text>Loading</Text>
           </View>
-        ) : null}
+        ) : (
+          <View>
+            {currentDeck.map((card, i) => <View></View>)}
+          </View>
+        )}
       </View>
     );
   };
@@ -84,6 +87,7 @@ const DeckMangercomp = connect(store => {
     allCards: store.cards.allCards,
     name: store.auth.name,
     currentCategory: store.cards.currentCategory,
+    currentDeck: store.cards.currentDeck,
     categories: store.cards.categories,
   };
 })(DeckManager);
