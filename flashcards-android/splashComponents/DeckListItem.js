@@ -6,11 +6,31 @@ import cardActions from '../actions/cardActions';
 class DeckListItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      expanded: false,
+    };
   }
+
   render = () => {
+    const {card} = this.props;
+    const {expanded} = this.state;
     return (
       <View>
-        <Text>Deck List Item</Text>
+        <Text>
+          {card.front}
+          {card.back}
+          Archived: {card.archived ? (
+            <Text>Yes</Text>
+          ):(
+            <Text>No</Text>
+          )}
+        </Text>
+        {expanded ? (
+          <Text>Expanded</Text>
+        ) : (
+          null
+        )}
+        <Button onPress={() => this.setState({expanded: !expanded})} title={!expanded ? 'expand' : 'contract'} />
       </View>
     );
   };
