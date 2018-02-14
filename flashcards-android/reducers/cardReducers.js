@@ -78,10 +78,26 @@ const cardReducers = (state = initialState, action) => {
         card =>
           card['front+category+name'] === action.payload['front+category+name'],
       );
-      let temp1 = newCurrentDeck[currentDeckIndex];
-      temp1.archived = !action.payload.archived;
-      newCurrentDeck[currentDeckIndex] = temp1;
-      newAllCards[allCardsIndex] = temp1;
+      let newCard = newCurrentDeck[currentDeckIndex];
+      newCard.archived = !action.payload.archived;
+      newCurrentDeck[currentDeckIndex] = newCard;
+      newAllCards[allCardsIndex] = newCard;
+      state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
+      break;
+    }
+    case 'DELETE_CARD': {
+      let newCurrentDeck = state.currentDeck;
+      let newAllCards = state.allCards;
+      let currentDeckIndex = newCurrentDeck.findIndex(
+        card =>
+          card['front+category+name'] === action.payload['front+category+name'],
+      );
+      let allCardsIndex = newAllCards.findIndex(
+        card =>
+          card['front+category+name'] === action.payload['front+category+name'],
+      );
+      newCurrentDeck = newCurrentDeck.splice(currentDeckIndex, 1);
+      newAllCards = newAllCards.splice(allCardsIndex, 1);
       state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
       break;
     }
