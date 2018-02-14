@@ -99,5 +99,8 @@ module.exports = {
       .then(response => console.log(response))
       .catch(err => console.log(err));
     store.dispatch({type: 'TOGGLE_ARCHIVED', payload: card});
+    setTimeout(() => {
+      store.dispatch({type: 'UPDATE_CATEGORY', payload: card.category});
+    }, 300);
   },
 };

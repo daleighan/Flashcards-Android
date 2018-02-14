@@ -2,7 +2,6 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from './reducers/index';
-
 // below is an example of how to make redux middleware;
 const logger1 = (store) => (next) => (action) => {
   console.log('action fired', action);
@@ -10,7 +9,7 @@ const logger1 = (store) => (next) => (action) => {
   next(action);
 }
 
-const middleware = applyMiddleware(logger);// put in middleware as args
+const middleware = applyMiddleware(logger, thunk);// put in middleware as args
 
 const store = createStore(reducers, {}, middleware);//middleware can be provided as the third argument to this
 
