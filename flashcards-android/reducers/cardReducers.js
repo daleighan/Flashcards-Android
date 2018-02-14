@@ -67,6 +67,20 @@ const cardReducers = (state = initialState, action) => {
       state = {...state, loading: !state.loading};
       break;
     }
+    case 'TOGGLE_ARCHIVED': {
+      let newCurrentDeck = state.currentDeck;
+      let newAllCards = state.allCards;
+      let currentDeckIndex = newCurrentDeck.findIndex(card => card['front+category+name'] === action.payload['front+category+name']);
+      let allCardsIndex = newAllCards.findIndex(card => card['front+category+name'] === action.payload['front+category+name']);
+      let temp1 = newCurrentDeck[currentDeckIndex];
+      temp1.archived = !action.payload.archived;
+      newCurrentDeck[currentDeckIndex] = temp1;
+      newAllCards[allCardsIndex] = temp1;
+      console.log(newCurrentDeck, newAllCards);
+      state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
+      console.log(state);
+      break;
+    }
   }
   return state;
 };

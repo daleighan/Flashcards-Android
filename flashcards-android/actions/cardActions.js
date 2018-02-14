@@ -85,7 +85,6 @@ module.exports = {
     store.dispatch({type: 'UNFETCH'});
   },
   toggleArchiving: (card, currentCategory) => {
-    console.log(card);
     axios
       .post(
         'http://ec2-52-15-41-183.us-east-2.compute.amazonaws.com/api/add_card',
@@ -99,5 +98,6 @@ module.exports = {
       )
       .then(response => console.log(response))
       .catch(err => console.log(err));
+    store.dispatch({type: 'TOGGLE_ARCHIVED', payload: card});
   },
 };
