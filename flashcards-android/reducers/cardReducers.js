@@ -96,9 +96,16 @@ const cardReducers = (state = initialState, action) => {
         card =>
           card['front+category+name'] === action.payload['front+category+name'],
       );
-      newCurrentDeck = newCurrentDeck.splice(currentDeckIndex, 1);
-      newAllCards = newAllCards.splice(allCardsIndex, 1);
-      state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
+      newCurrentDeck.splice(currentDeckIndex, 1);
+      newAllCards.splice(allCardsIndex, 1);
+      if (newCurrentDeck.length > 0) {
+        state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
+      } else {
+        let newCategories = state.categories;
+        newCategories.splice(state.categories.indexOf(state.currentCategory, 1));
+        console.log(newCategories);
+        state = {...state, categories: newCategories, allCards: newAllCards};
+      }
       break;
     }
   }

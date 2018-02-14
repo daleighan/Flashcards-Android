@@ -76,7 +76,7 @@ module.exports = {
         archived: false,
       },
     });
-    store.dispatch({type: 'UPDATE_CATEGORY', payload: currentCategory});
+    store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
     store.dispatch({type: 'UPDATE_NEW_CATEGORY', payload: ''});
     store.dispatch({type: 'UPDATE_NEW_FRONT', payload: ''});
     store.dispatch({type: 'UPDATE_NEW_BACK', payload: ''});
