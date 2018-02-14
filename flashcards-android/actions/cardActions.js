@@ -103,4 +103,17 @@ module.exports = {
       store.dispatch({type: 'UPDATE_CATEGORY', payload: card.category});
     }, 300);
   },
+  deleteCard: card => {
+    axios
+      .post(
+        'http://ec2-52-15-41-183.us-east-2.compute.amazonaws.com/api/delete_one',
+        {
+          front: card.front,
+          category: card.category,
+          username: card.username,
+        },
+      )
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
+  },
 };

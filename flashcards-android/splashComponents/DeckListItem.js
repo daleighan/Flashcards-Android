@@ -27,6 +27,10 @@ class DeckListItem extends Component {
               onPress={() => cardActions.toggleArchiving(card, currentCategory)}
               title={!card.archived ? 'Archive' : 'Unarchive'}
             />
+            <Button
+              onPress={() => cardActions.deleteCard(card)}
+              title='Delete Card'
+            />
           </View>
         ) : null}
         <Button
