@@ -50,7 +50,7 @@ module.exports = {
     back,
   ) => {
     console.log(categories, categories.includes(newCategory), newCategory);
-    if (!categories.includes(newCategory)) {
+    if (!categories.includes(newCategory) && newCategory.length > 0) {
       store.dispatch({type: 'NEW_CATEGORY', payload: newCategory});
       currentCategory = newCategory;
     }
