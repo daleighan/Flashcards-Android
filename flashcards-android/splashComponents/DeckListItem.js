@@ -12,7 +12,7 @@ class DeckListItem extends Component {
   }
 
   render = () => {
-    const {card} = this.props;
+    const {card, currentCategory} = this.props;
     const {expanded} = this.state;
     return (
       <View>
@@ -21,14 +21,14 @@ class DeckListItem extends Component {
           {card.back}
           Archived: {card.archived ? <Text>Yes</Text> : <Text>No</Text>}
         </Text>
-        {expanded ? 
+        {expanded ? (
           <View>
             <Button
-              onPress={() => cardActions.archiveCard(card)}
+              onPress={() => cardActions.toggleArchiving(card, currentCategory)}
               title={!card.archived ? 'Archive' : 'Unarchive'}
-             />
-          </View>  
-        : null}
+            />
+          </View>
+        ) : null}
         <Button
           onPress={() => this.setState({expanded: !expanded})}
           title={!expanded ? 'expand' : 'contract'}

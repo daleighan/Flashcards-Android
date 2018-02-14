@@ -74,7 +74,7 @@ class DeckManager extends Component {
             <Text>Loading</Text>
           </View>
         ) : (
-          <View>{currentDeck.map((card, i) => <DeckListItem key={i} card={card} />)}</View>
+          <View>{currentDeck.map((card, i) => <DeckListItem currentCategory={currentCategory} key={i} card={card} />)}</View>
         )}
       </View>
     );

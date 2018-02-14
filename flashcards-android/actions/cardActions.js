@@ -84,7 +84,20 @@ module.exports = {
   unfetch: () => {
     store.dispatch({type: 'UNFETCH'});
   },
-  archiveCard: (card) => {
+  toggleArchiving: (card, currentCategory) => {
     console.log(card);
+    axios
+      .post(
+        'http://ec2-52-15-41-183.us-east-2.compute.amazonaws.com/api/add_card',
+        {
+          username: card.username,
+          front: card.front,
+          back: card.back,
+          category: currentCategory,
+          archived: !card.archived,
+        },
+      )
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   },
 };
