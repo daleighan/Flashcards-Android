@@ -56,7 +56,6 @@ class Splash extends Component {
       alert('To add your first category, simply create the first card in it');
     }
   }
-
   render = () => {
     let {allCards, loading, categories, currentCategory} = this.props;
     return (

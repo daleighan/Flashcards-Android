@@ -30,7 +30,6 @@ module.exports = {
     store.dispatch({type: 'UPDATE_NEW_CATEGORY', payload: text});
   },
   updateNewInput: (text, type) => {
-    console.log(text);
     switch (type) {
       case 'front': {
         store.dispatch({type: 'UPDATE_NEW_FRONT', payload: text});
@@ -84,5 +83,8 @@ module.exports = {
   },
   unfetch: () => {
     store.dispatch({type: 'UNFETCH'});
+  },
+  archiveCard: (card) => {
+    console.log(card);
   },
 };

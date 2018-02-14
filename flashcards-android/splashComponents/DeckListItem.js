@@ -19,18 +19,20 @@ class DeckListItem extends Component {
         <Text>
           {card.front}
           {card.back}
-          Archived: {card.archived ? (
-            <Text>Yes</Text>
-          ):(
-            <Text>No</Text>
-          )}
+          Archived: {card.archived ? <Text>Yes</Text> : <Text>No</Text>}
         </Text>
-        {expanded ? (
-          <Text>Expanded</Text>
-        ) : (
-          null
-        )}
-        <Button onPress={() => this.setState({expanded: !expanded})} title={!expanded ? 'expand' : 'contract'} />
+        {expanded ? 
+          <View>
+            <Button
+              onPress={() => cardActions.archiveCard(card)}
+              title={!card.archived ? 'Archive' : 'Unarchive'}
+             />
+          </View>  
+        : null}
+        <Button
+          onPress={() => this.setState({expanded: !expanded})}
+          title={!expanded ? 'expand' : 'contract'}
+        />
       </View>
     );
   };
