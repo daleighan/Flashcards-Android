@@ -49,10 +49,12 @@ module.exports = {
     front,
     back,
   ) => {
-    if (!categories.includes(newCategory) && newCategory.length > 0) {
+    console.log(categories, categories.includes(newCategory), newCategory);
+    if (!categories.includes(newCategory)) {
       store.dispatch({type: 'NEW_CATEGORY', payload: newCategory});
       currentCategory = newCategory;
     }
+    console.log(currentCategory, newCategory);
     axios
       .post(
         'http://ec2-52-15-41-183.us-east-2.compute.amazonaws.com/api/add_card',
@@ -76,7 +78,9 @@ module.exports = {
         archived: false,
       },
     });
-    store.dispatch({type: 'UPDATE_CATEGORY', payload: newCategory});
+    setTimeout(() => {
+      store.dispatch({type: 'UPDATE_CATEGORY', payload: currentCategory});
+    }, 100);
     store.dispatch({type: 'UPDATE_NEW_CATEGORY', payload: ''});
     store.dispatch({type: 'UPDATE_NEW_FRONT', payload: ''});
     store.dispatch({type: 'UPDATE_NEW_BACK', payload: ''});

@@ -56,7 +56,7 @@ const cardReducers = (state = initialState, action) => {
       break;
     }
     case 'INSERT_CARD': {
-      state = {...state, allCards: [...state.allCards, action.payload]};
+      state = {...state, currentDeck: [...state.currentDeck, action.payload], allCards: [...state.allCards, action.payload]};
       break;
     }
     case 'UNFETCH': {
@@ -102,8 +102,9 @@ const cardReducers = (state = initialState, action) => {
         state = {...state, currentDeck: newCurrentDeck, allCards: newAllCards};
       } else {
         let newCategories = state.categories;
-        newCategories.splice(state.categories.indexOf(state.currentCategory, 1));
-        console.log(newCategories);
+        newCategories.splice(
+          state.categories.indexOf(state.currentCategory, 1),
+        );
         state = {...state, categories: newCategories, allCards: newAllCards};
       }
       break;

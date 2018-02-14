@@ -40,9 +40,9 @@ class Splash extends Component {
     if (!fetched) {
       cardActions.initialFetch(name);
     }
-    if (currentCategory === 'adding') {
-      cardActions.updateCategory(categories[0]);
-    }
+    //if (currentCategory === 'adding') {
+    //  cardActions.updateCategory(categories[0]);
+    //}
     if (allCards.length === 0 && fetched === true) {
       navigation.navigate('AddCards');
       alert('To add your first category, simply create the first card in it');
